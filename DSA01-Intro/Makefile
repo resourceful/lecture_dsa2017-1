@@ -1,4 +1,4 @@
-texfile = DSA_2017.tex
+texfile = DSA_2017_01.tex
 outdir=/tmp
 
 all: ${texfile}

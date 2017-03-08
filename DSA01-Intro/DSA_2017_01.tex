@@ -926,13 +926,14 @@ f(n) = O(g(n)) $\neq$  O(g(n)) = f(n)
 \textbf{theorem)} if $f(n) = a_{m}n^m + ... + a_1n + a_0$, then $f(n) = O(nm)$
 
 \textbf{proof)}
-$f(n)   |a_k|·n^k + |a_{k-1}|·n^{k-1} +...+ |a_1|\cdot n + |a_0|$
-
-$ = {|a_k| + |a_{k-1}|/n +...+ |a_1|/n^{k-1}+ |a_0|/n^k}\cdot n^k $
-
-$ \leq  {|a_k| + |a_{k-1}| +...+ |a_1| + |a_0|}\cdot n^k$
-$ = c\cdot n^k (c = |a_k|+|a_{k-1}|+...+|a_1|+|a_0|) = O(n^k)$
+\begin{align*}
+f(n) &\leq  |a_k|·n^k + |a_{k-1}|·n^{k-1} +...+ |a_1|\cdot n + |a_0| \\
+& = {|a_k| + |a_{k-1}|/n +...+ |a_1|/n^{k-1}+ |a_0|/n^k}\cdot n^k \\
+& \leq  {|a_k| + |a_{k-1}| +...+ |a_1| + |a_0|}\cdot n^k \\
+& = c\cdot n^k (c = |a_k|+|a_{k-1}|+...+|a_1|+|a_0|) = O(n^k)
+\end{align*}
 \end{frame}
+
 
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
