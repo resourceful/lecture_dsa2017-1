@@ -80,6 +80,8 @@
 \setbeamersize{text margin left = 1em, text margin right = 1em}
 
 
+\usepackage{blkarray, bigstrut}
+
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	02. PACKAGES & TIKZ
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -173,7 +175,7 @@ xrightmargin=0.5em
 \lstnewenvironment{codedef}
 {\lstset{
 language=[LaTeX]TeX,
-basicstyle=\ttfamily\fontsize{8pt}{9pt}\selectfont,
+basicstyle=\ttfamily\fontsize{9pt}{10pt}\selectfont,
 escapechar=\&\&,
 aboveskip=1em,
 keywordstyle=,
@@ -199,7 +201,7 @@ xrightmargin=8pt,
 \lstnewenvironment{codedefnb}
 {\lstset{
 language=[LaTeX]TeX,
-basicstyle=\ttfamily\fontsize{8pt}{9pt}\selectfont,
+basicstyle=\ttfamily\fontsize{9pt}{10pt}\selectfont,
 escapechar=\%\%,
 aboveskip=1em,
 keywordstyle=,
@@ -319,7 +321,7 @@ aboveskip=1em
     {\usebeamerfont{date}\usebeamercolor[fg]{date}Updated: \insertdate\par\small{\jobname}\par}%
     \fi%
     \vfill
-    \hfill\includegraphics[height=3.5cm]{figures/lion/lion_right.png} \hspace{5mm} \par % \includegraphics[height=10mm]{issr} \par
+    \hfill\includegraphics[height=3.5cm]{../style/figures/lion/lion_right.png} \hspace{5mm} \par % \includegraphics[height=10mm]{issr} \par
     \vspace{-6em}
     \ifx\insertinstitut\@empty%
     \else%
@@ -358,10 +360,10 @@ aboveskip=1em
     \progressbar@tmpcounta=\insertframenumber
     \progressbar@tmpcountb=\inserttotalframenumber
     \progressbar@tmpdim=\progressbar@pbwd
-    \divide\progressbar@tmpdim by 1000
+    \divide\progressbar@tmpdim by 10000
     \multiply\progressbar@tmpdim by \progressbar@tmpcounta
     \divide\progressbar@tmpdim by \progressbar@tmpcountb
-    \multiply\progressbar@tmpdim by 1000
+    \multiply\progressbar@tmpdim by 10000
     \fontsize{1em}{1em}\selectfont
 
     \makebox[\textwidth][c]{
@@ -412,10 +414,10 @@ aboveskip=1em
   \progressbar@tmpcounta=\insertframenumber
   \progressbar@tmpcountb=\inserttotalframenumber
   \progressbar@tmpdim=\paperwidth
-  \divide\progressbar@tmpdim by 1000 
+  \divide\progressbar@tmpdim by 10000 
   \multiply\progressbar@tmpdim by \progressbar@tmpcounta
   \divide\progressbar@tmpdim by \progressbar@tmpcountb
-  \multiply\progressbar@tmpdim by 1000 
+  \multiply\progressbar@tmpdim by 10000 
   {%
     \usebeamercolor{palette quaternary}%
     \begin{tikzpicture}[tight background]
@@ -496,9 +498,9 @@ aboveskip=1em
 \if@dosthlmFooter
 \setbeamertemplate{footline}{
 \hbox{
-\begin{beamercolorbox}[wd=0.12\textwidth,dp=1.5ex,leftskip=0.2cm,rightskip=0cm]{structure}
-\reflectbox{\includegraphics[width=0.1\textwidth]{figures/lion/lion_right.png}}
-\end{beamercolorbox}
+%\begin{beamercolorbox}[wd=0.12\textwidth,dp=1.5ex,leftskip=0.2cm,rightskip=0cm]{structure}
+%\reflectbox{\includegraphics[width=0.1\textwidth]{../style/figures/lion/lion_right.png}}
+%\end{beamercolorbox}
 \begin{beamercolorbox}[wd=0.86\textwidth, dp=1.5ex,leftskip=0.2cm,rightskip=0.5cm plus1fil]{structure}
 \usebeamerfont{page number in head/foot}
 \inserttitle\hfill\insertshortauthor\hfill\insertdate 
