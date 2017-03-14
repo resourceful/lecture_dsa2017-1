@@ -1,4 +1,4 @@
-PROGRAMS = array_address
+PROGRAMS = array_address pointer_variable null_pointer swap malloc_ex
 
 CFLAGS = -g -Wall -O0
 

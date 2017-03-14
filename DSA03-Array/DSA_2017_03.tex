@@ -160,6 +160,73 @@ float sum(float list[], inst n) {
 \end{codedef}
 \end{frame}
 
+
+
+
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Recap: On Pointer}
+Pointer Variable stores address
+\begin{itemize}
+\item \& : Starting address of allocated variable
+\item * : Value stored on the address of the pointer variable
+\end{itemize}
+\lstinputlisting[lineskip=1pt, numbers=left]{codes/pointer_variable.c}
+\end{frame}
+
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Recap: On Pointer}
+Do Not!
+  \begin{itemize}
+  \item pointer variable is not referencing an address, so cannot store a value
+\begin{codedef}
+int *ptr;
+* ptr = 100;
+\end{codedef}
+\item the data type must equal
+\begin{codedef}
+double Pi = 3.14;
+int *pPi = &Pi; 
+\end{codedef}
+\item cannot dereference a non-pointer variable
+\begin{codedef}
+int num;
+*num = 100;  
+\end{codedef}
+\item it is recommended to initialize a pointer value with NULL ('\textbackslash 0')
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Recap: On Pointer}
+Do!
+  \begin{itemize}
+\item it is recommended to initialize a pointer value with NULL ('\textbackslash 0') \\ 
+See the example
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Recap: On Pointer}
+\begin{codedef}
+#include <stdlib.h
+
+void *malloc(size_t size); // allocates size bytes of memory and returns a pointer to the allocated memory
+void *free(void *ptr); // frees allocation that were created via the preceding allocation function
+void *calloc(size_t count, size_t size); // contiguously allocates enough sapce for count objects that are size bytes of memory each and returns a pointer to the allocated memory. The allocated memory is filled with bytes of value zero.
+void *realloc(void *ptr, size_t size); // change the size of the allocation pointed to by ptr to size, and returns ptr
+\end{codedef}
+
+\end{frame}
+
+
+
+
 \begin{frame}[t, fragile]
   \frametitle{Array: Ex 2.2, 1-dimensional array addressing}
 \begin{codedef}
@@ -499,7 +566,6 @@ item2.link = &item3;
 
 
 
-\section{Polynoimals}
 
 \section{Sparse Matrices}
 
