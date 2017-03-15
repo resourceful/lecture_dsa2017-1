@@ -1,0 +1,17 @@
+# Where to install
+INSTDIR = /home/james/class/instdir
+…
+
+clean: 
+	-rm main.o foo.o bar.o
+
+install:	myapp
+	@if [ -d $(INSTDIR) ]; \
+		then \
+		cp myapp $(INSTDIR);\
+		chmod a+x $(INSTDIR)/myapp;\
+		chmod og-w $(INSTDIR)/myapp;\
+		echo “Installed in $(INSTDIR)”;\
+	else \
+		echo “Sorry, $(INSTDIR) does not exist”;\
+	fi
