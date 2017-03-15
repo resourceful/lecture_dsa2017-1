@@ -196,8 +196,7 @@ int *pPi = &Pi;
 int num;
 *num = 100;  
 \end{codedef}
-\item it is recommended to initialize a pointer value with NULL ('\textbackslash 0')
-  \end{itemize}
+\end{itemize}
 \end{frame}
 
 
@@ -207,14 +206,14 @@ Do!
   \begin{itemize}
 \item it is recommended to initialize a pointer value with NULL ('\textbackslash 0') \\ 
 See the example
-
   \end{itemize}
+\lstinputlisting[lineskip=1pt, numbers=left]{codes/null_pointer.c}
 \end{frame}
 
 \begin{frame}[t, fragile]
   \frametitle{Recap: On Pointer}
 \begin{codedef}
-#include <stdlib.h
+#include <stdlib.h>
 
 void *malloc(size_t size); // allocates size bytes of memory and returns a pointer to the allocated memory
 void *free(void *ptr); // frees allocation that were created via the preceding allocation function
