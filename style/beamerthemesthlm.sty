@@ -79,7 +79,7 @@
 
 \setbeamersize{text margin left = 1em, text margin right = 1em}
 
-
+\usepackage{colortbl}
 \usepackage{blkarray, bigstrut}
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -176,7 +176,7 @@ xrightmargin=0.5em
 {\lstset{
 language=[LaTeX]TeX,
 basicstyle=\ttfamily\fontsize{9pt}{10pt}\selectfont,
-escapechar=\&\&,
+escapechar=~,
 aboveskip=1em,
 keywordstyle=,
 numbers=none,
@@ -197,12 +197,38 @@ xrightmargin=8pt,
 {}
 
 
+\lstnewenvironment{ncodedef}
+{\lstset{
+language=[LaTeX]TeX,
+basicstyle=\ttfamily\fontsize{9pt}{10pt}\selectfont,
+escapechar=~,
+aboveskip=1em,
+keywordstyle=,
+numbers=left,
+stepnumber=1,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+breaklines=true,
+frame=single,
+%framerule=0.5pt,
+tabsize=3,
+framexleftmargin=2em,
+framexrightmargin=0.5em,
+xleftmargin=2em,
+xrightmargin=8pt,
+% columns=fullflexible
+}}
+{}
+
+
+
 
 \lstnewenvironment{codedefnb}
 {\lstset{
 language=[LaTeX]TeX,
 basicstyle=\ttfamily\fontsize{9pt}{10pt}\selectfont,
-escapechar=\%\%,
+escapechar=~,
 aboveskip=1em,
 keywordstyle=,
 numbers=none,
