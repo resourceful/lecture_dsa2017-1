@@ -48,7 +48,7 @@
 \textbf{ADT Stack}
 \begin{itemize}
 \item Ordered List
-\item Insertions and deleteions are made at one end called the top
+\item Insertions and deletions are made at one end called the top
 \end{itemize}
 \end{frame}
 
@@ -173,7 +173,7 @@ int top = -1;
 \texttt{IsFull(stack);}
 
   \begin{codedef}
-    return(top >= MAX\_STACK\_SIZE-1);
+    return(top >= MAX_STACK_SIZE-1);
   \end{codedef}
 
 \end{frame}
@@ -395,7 +395,7 @@ front = (front + 1) % MAX_QUEUE_SIZE;
   \frametitle{Circular Queues: Implementation}
 Add to a circular queue
 \begin{itemize}
-\item rotate rear befor we place the item in the rear of the queue
+\item rotate rear before we place the item in the rear of the queue
 \end{itemize}
 
 \begin{ncodedef}
@@ -464,7 +464,7 @@ The representation of the maze
 \texttt{[row][col]} which is on border
 \begin{itemize}
 \item has only three (or two) neighbors
-\item surrond the maze by a border of 1's
+\item surround the maze by a border of 1's
 \end{itemize}
 
 \bigskip
@@ -484,7 +484,7 @@ typedef struct {
     short int horiz;
 } offsets
 
-offsets move[8]; /* arrary of moves for each direction */    
+offsets move[8]; /* array of moves for each direction */    
 \end{ncodedef}
 
 \begin{tabular}{c | c | c | c}
@@ -583,12 +583,12 @@ To understand the meaning of a expressions and statements
 
 Operator precedence hierarchy
 \begin{itemize}
-\item<determine the order to evaluate opeartors> 
+\item<determine the order to evaluate operators> 
 \end{itemize}
 
 associativity
 \begin{itemize}
-\item how to evaluate opeartors with the same precedence
+\item how to evaluate operators with the same precedence
 \end{itemize}
 \end{frame}
 
@@ -626,7 +626,7 @@ $|$ & 6 & left-to-right \\
 \textbf{Human Style}
 \begin{enumerate}
 \item assign priority to each operator
-\item use parenthesis and eavaluate inner-most ones\\
+\item use parenthesis and evaluate inner-most ones\\
      $(((A*(b+c))+(d/e))-(a/(c*d)))$
 \end{enumerate}
 \bigskip
@@ -638,7 +638,7 @@ $|$ & 6 & left-to-right \\
 \begin{codedef}
   prefix form: (operator) operand operand
   infix form: operand (operator) operand
-  postfix form: operand operand (operater)
+  postfix form: operand operand (operator)
 \end{codedef}
 \end{frame}
 
@@ -695,7 +695,7 @@ Evaluation of postfix expression
   \frametitle{Evaluating Postfix Expression}
 \texttt{get\_token()}
 \begin{itemize}
-\item used to obtain tokesn from the expression string
+\item used to obtain tokens from the expression string
 \end{itemize}
 
 \texttt{eval()}
@@ -704,7 +704,7 @@ Evaluation of postfix expression
 \item otherwise
   \begin{itemize}
   \item pop two operands from the stack
-  \item perform the specified opeartion
+  \item perform the specified operation
   \item push the result back on the stack
   \end{itemize}
 \end{itemize}
@@ -730,8 +730,8 @@ char expr[MAX_EXPR_SIZE];  /* input string */
 represent stack by a global array
 \begin{itemize}
 \item accessed only through top
-\item assume only the binary opeartor $+, -, *, /,$ and $\%$
-\item assume signle digit integer
+\item assume only the binary operator $+, -, *, /,$ and $\%$
+\item assume single digit integer
 \end{itemize}
 \end{frame}
 
@@ -773,6 +773,7 @@ int eval(){
      return pop(&top); 
 }  
 \end{ncodedef}
+
 \end{frame}
 
 \begin{frame}[t, fragile, allowframebreaks]
@@ -921,7 +922,7 @@ Use two types of precedence (because of the `(' operator)
 precedence stack[MAX_STACK_SIZE];
 /* isp and icp arrays 
    -- index is value of precedence 
-      lparren, rparen, plus, minus, 
+      lparen, rparen, plus, minus, 
       times divide, mode, eos */
 
 static int isp[] = {0, 19, 12, 12, 13, 13, 13, 0};
@@ -1007,7 +1008,7 @@ Sequential mappings of stacks into an array
 
 The first stack:
 \begin{itemize}
-\item bottom elelment: \texttt{memory[0]}
+\item bottom element: \texttt{memory[0]}
 \item grow toward \texttt{memory[MEM\_SIZE-1]}
 \end{itemize}
 
