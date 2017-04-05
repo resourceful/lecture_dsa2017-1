@@ -1,0 +1,797 @@
+% Author: Seongjin Lee 
+% Gyeongsang National University, Korea 
+% 
+% 2017-03-06
+%
+
+\documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
+\usepackage{kotex}
+%\usetheme{sthlm}
+\usepackage{../style/beamerthemesthlm}
+\hypersetup{pdfauthor={Seongjin Lee (insight@gnu.ac.kr)},
+            pdfsubject={Data Structure and Algorithm, Lecture Note},
+            pdfkeywords={Data Structure, Algorithm, Lecture, Note},
+            pdfmoddate={D: \pdfdate},
+            pdfcreator={Seongjin Lee}}
+
+%\setbeamertemplate{footline}[text line]{%
+%    \parbox{\linewidth}{\vspace*{-8pt} \insertsectionhead  \hfill\insertshortauthor\hfill\insertpagenumber}}
+%\setbeamertemplate{navigation symbols}{}
+
+
+\setbeamertemplate{blocks}[rounded]
+
+\title{Data Structure and Algorithm}
+\subtitle{Class 6}
+\author[SJL]{Seongjin Lee}
+\institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
+\date{2017-03-06} 
+
+\begin{document}
+
+
+
+\frame[plain,t]{\titlepage} 
+
+\frame{\frametitle{Table of contents}\tableofcontents} 
+
+
+%---------------------------------------------------------
+\begin{comment}
+\section{List} 
+\begin{frame}[t]
+  \frametitle{Array}
+  \begin{itemize}
+  \item sequential representation
+  \item some operation can be very time- consuming (data movement)
+  \item size of data must be predefined
+  \item static storage allocation and deallocation
+  \end{itemize}
+
+Solution to Data Movement in Sequential Representation
+\begin{itemize}
+\item<2-> pointers: often called links
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Pointers}
+for any type T in C
+\begin{itemize}
+\item there is corresponding type pointer-to-T
+\end{itemize}
+
+actual value of pointer type
+\begin{itemize}
+\item an address of memory
+\end{itemize}
+
+pointer operators in C
+\begin{itemize}
+\item the address operator: \&
+\item the dereferencing(or indirection) operator: *
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Pointers}
+dynamically allocated storage
+\begin{itemize}
+\item C provides a mechanism, called a heap, for allocating storage
+  at run-time
+\end{itemize}
+
+\begin{ncodedef}
+int i,*pi;
+float f,*pf;
+pi = (int *)malloc(sizeof(int));
+pf = (float *)malloc(sizeof(float));
+*pi = 1024;
+*pf = 3.14;
+printf(“an integer=%d,a float=%f\n”,*pi,*pf); free(pi);
+free(pf);
+\end{ncodedef}
+\end{frame}
+\end{comment}
+\section{Singly Linked Lists}
+\begin{frame}[t]
+  \frametitle{Singly Linked Lists}
+  \begin{itemize}
+  \item compose of data part and link part
+  \item link part contains address of the
+next element in a list
+  \item non-sequential representations
+  \item size of the list is not predefined
+  \item dynamic storage allocation and deallocation
+  \end{itemize}
+
+\includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Singly Linked Lists: Insert}
+  To insert the word \texttt{mat} between \texttt{cat} and \texttt{sat}
+
+\includegraphics<2>[width=0.9\textwidth]{figures/fig02_single_insert.png}
+
+\includegraphics<3>[width=0.9\textwidth]{figures/fig02_single_insert1.png}
+
+\includegraphics<4>[width=0.9\textwidth]{figures/fig02_single_insert2.png}
+
+\includegraphics<5>[width=0.9\textwidth]{figures/fig02_single_insert3.png}
+
+
+\begin{enumerate}
+\item<2-> get a node currently unused (\texttt{paddr})
+\item<3-> set the data of this node to mat
+\item<4-> set \texttt{paddr}'s link to point to the address found in the link of
+  the node \texttt{cat}
+\item<5-> set the link of the node cat to point to \texttt{paddr}
+
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Singly Linked Lists: Delete}
+To delete \texttt{mat} from the list
+\includegraphics<1-2>[width=0.9\textwidth]{figures/fig03_single_delete.png}
+
+\includegraphics<3>[width=0.9\textwidth]{figures/fig03_single_delete1.png}
+
+\includegraphics<4>[width=0.9\textwidth]{figures/fig03_single_delete2.png}
+\begin{enumerate}
+\item<2-> find the element that immediately precedes \texttt{mat}, which is cat
+\item<3-> set its link to point to \texttt{mat}'s link
+\item<4-> free the \texttt{mat}'s node
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[t]
+  \frametitle{Singly Linked List}
+\bigskip
+  \begin{block}{Note}
+    \begin{center}
+\bigskip
+
+      There is no data movement in insert and delete operation
+
+\bigskip
+    \end{center}
+
+  \end{block}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Singly Linked List: Features}
+  
+required capabilities to make linked representations possible
+\begin{itemize}
+\item a mechanism for defining a node’s structure, that is, the
+  field it contains
+\item a way to create new nodes when we need them
+\item a way to remove nodes that we no longer need
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: The data type}
+  Define the node structure for the list
+  \begin{itemize}
+  \item \textbf{data field}: Character array
+  \item \textbf{link field}: Pointer to the next node
+    \begin{itemize}
+    \item Self-referential structure
+    \end{itemize}
+  \end{itemize}
+
+  \begin{ncodedef}
+typedef struct node {
+    char data[4];
+    struct node *next; // self-referential structure
+} node_t;
+  \end{ncodedef}
+  \begin{center}
+    \includegraphics[width=4cm]{figures/fig04_node.png}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Creating a node}
+Create new nodes for our list then place the word \texttt{bat} into the
+list
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \begin{ncodedef}
+node_t *head = NULL;
+head = malloc(sizeof(node_t));
+if (head == NULL) {
+    return 1;
+}
+strcpy(head->data, "bat");
+head->next = NULL;
+\end{ncodedef}
+
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \includegraphics<1>[width=6cm]{figures/fig05_head.png}
+    \includegraphics<2>[width=6cm]{figures/fig05_head1.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Adding a node}
+\begin{ncodedef}
+node_t second; 
+    
+second = malloc(sizeof(node_t)); 
+  
+second->next=NULL;
+strcpy(second->data, "cat");
+  
+head->next=second;
+\end{ncodedef}
+    \includegraphics<1>[width=0.9\textwidth]{figures/fig05_second1.png}
+    \includegraphics<2>[width=0.9\textwidth]{figures/fig05_second2.png}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Implementation}
+  \begin{itemize}
+  \item data structure
+  \item insert a node
+  \item delete the list
+  \item remove a node
+  \item search
+  \item print
+  \end{itemize}
+
+  \begin{ncodedef}
+typedef struct node {
+    int data;
+    struct node *next; 
+} node_t;
+  \end{ncodedef}  
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Print}
+\begin{ncodedef}
+void print_list(node_t * head) {
+    node_t * current = head;
+
+    while (current != NULL) {
+        printf("%d\n", current->data);
+        current = current->next;
+    }
+}  
+\end{ncodedef}
+\bigskip
+  \begin{itemize}
+  \item Create a pointer that iterates the list
+  \item print the data in the list.
+  \item Repeat until the pointer reaches the end of the list
+    (the next node in \texttt{NULL})
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Insert at the end}
+
+  \begin{ncodedef}
+void insert_tail(node_t * head, int data) {
+    node_t * current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    /* now we can add a new variable */
+    current->next = malloc(sizeof(node_t));
+    current->next->data = data;
+    current->next->next = NULL;
+}
+  \end{ncodedef}  
+\bigskip
+  \begin{itemize}
+  \item Iterate the list using a pointer to find the end of the list
+  \item add a new node at the end of the list
+  \item add the data
+  \item mark next node as \texttt{NULL}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Insert at the beginning}
+
+\begin{ncodedef}
+void insert_head(node_t ** head, int data) {
+    node_t * new_node;
+    new_node = malloc(sizeof(node_t));
+
+    new_node->data = data;
+    new_node->next = *head;
+    *head = new_node;
+}  
+\end{ncodedef}
+\bigskip
+\begin{itemize}
+\item create a new node with data
+\item link the new node to point to the head of the list
+\item set the head of the list with the new node
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[t]
+  \frametitle{Singly Linked List: Insert at the beginning}
+    \includegraphics[width=0.9\textwidth]{figures/fig06_pointer.png}  
+
+\bigskip
+    \includegraphics[width=0.9\textwidth]{figures/fig06_pointer1.png}  
+
+\bigskip
+    \includegraphics[width=0.9\textwidth]{figures/fig06_pointer2.png}  
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Removing the first node}
+
+\begin{ncodedef}
+int remove_head(node_t ** head) {
+    int retval = -1;
+    node_t * new_head = NULL;
+    if (*head == NULL) {
+        return -1;
+    }
+    new_head = (*head)->next;
+    retval = (*head)->data;
+    free(*head);
+    *head = new_head;
+    return retval;
+}  
+\end{ncodedef}
+\begin{itemize}
+\item select the next item that head points
+\item save it as a new head
+\item free the head
+\item use the new head as the head of the list
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Removing the last node}
+\begin{ncodedef}
+int remove_tail(node_t * head) {
+    int retval = 0;
+    if (head->next == NULL) { // only one node in the list
+        retval = head->data;
+        free(head);           // remove the head
+        return retval;
+    }
+
+    node_t * current = head;
+    while (current->next->next != NULL) { // go to the second last node
+        current = current->next;
+    }
+
+    retval = current->next->data; // get the last node's data
+    free(current->next);         // free the last node
+    current->next = NULL;        // set the next node NULL
+    return retval;
+
+}  
+\end{ncodedef}
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Removing a value }
+  \begin{ncodedef}
+int remove_value(node_t ** head, int data) {
+    node_t *previous, *current;
+    if (*head == NULL)
+        return -1;
+
+    if ((*head)->data == data) 
+        return pop(head);
+
+    previous = current = (*head)->next;
+    while (current != NULL) {
+        if (current->data == data) {
+            previous->next = current->next;
+            free(current);
+            return data;
+        }
+
+        previous = current;
+        current  = current->next;
+    }
+    return -1;
+}    
+  \end{ncodedef}
+  
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Singly Linked List: Deleting the list }
+  \begin{ncodedef}
+void delete_list(node_t *head) {
+    node_t  *current = head, 
+            *next = head;
+
+    while (current) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+}    
+  \end{ncodedef}
+\end{frame}
+
+\section{Dynamically Linked Stacks and Queues}
+\begin{frame}[t]
+  \frametitle{Representing Stack and Queue by Linked List}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/fig07_stack_list.png}
+     \caption{linked list stack}
+\end{figure}
+\bigskip
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/fig07_queue_list.png}
+  \caption{linked list queue}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Representing stacks by linked list}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+  \begin{ncodedef}
+/* n=MAX_STACKS=10 */ 
+#define MAX_STACKS 10
+
+typedef struct {
+    int key; 
+    /* other fields */ 
+} element;
+
+typedef struct stack *stack_ptr; 
+
+typedef struct stack {
+    element item;
+    stack_ptr link; 
+};
+
+stack_ptr top[MAX_STACKS];    
+  \end{ncodedef}      
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item Initial condition for stacks
+        \begin{itemize}
+        \item \texttt{top[i] = NULL, \\0 $\leq$ i $\leq$ MAX\_STACKS}
+        \end{itemize}
+      \item boundary condition for \texttt{n} stacks
+        \begin{itemize}
+        \item empty condition
+          \begin{itemize}
+          \item \texttt{top[i] = NULL} \\iff the $i^{th}$ stack is empty
+          \end{itemize}
+
+        \item full condition
+          \begin{itemize}
+          \item \texttt{IS\_FULL(temp)} \\iff the memory is full
+          \end{itemize}
+
+        \end{itemize}
+
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Pushing to a linked list stack}
+  \begin{ncodedef}
+void push(stack_ptr *ptop, element item) { 
+    stack_ptr temp = (stack_ptr)malloc(sizeof (stack)); 
+    if(IS_FULL(temp)) {
+        fprintf(stderr,``The memory is full\n'');
+        exit(1); 
+    }
+    temp->item=item; 
+    temp->link=*ptop; 
+    *ptop = temp;
+}    
+  \end{ncodedef}
+\end{frame}
+
+
+\begin{frame}[t, fragile]
+  \frametitle{Poping a linked list stack}
+  \begin{ncodedef}
+element pop(stack_ptr *ptop) { 
+    stack_ptr temp = *ptop; 
+    element item; 
+    if(IS_EMPTY(temp)) {
+        fprintf(stderr,``The stack is empty\n'');
+        exit(1); 
+     }
+     item=temp->item; 
+     *ptop=temp->link; 
+     free(temp); 
+     return item;
+}    
+  \end{ncodedef}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Representing Queues by linked list}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+  \begin{ncodedef}
+/* m=MAX_QUEUES=10 */ 
+#define MAX_QUEUES 10 
+
+typedef struct queue *queue_ptr;
+
+typedef struct queue {
+    element item;
+    queue_ptr link; 
+};
+
+queue_ptr front[MAX_QUEUES], 
+          rear[MAX_QUEUES];    
+  \end{ncodedef}      
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item initial condition for queue
+        \begin{itemize}
+        \item \texttt{front[i] = NULL, \\0 $\leq$ i $\leq$ MAX\_QUEUES}
+        \end{itemize}
+      \item boundary condition for queues
+        \begin{itemize}
+        \item empty condition
+          \begin{itemize}
+          \item \texttt{front[i] = NULL} \\iff the $i^{th}$ queue is empty
+          \end{itemize}
+
+        \item full condition
+          \begin{itemize}
+          \item \texttt{IS\_FULL(temp)} \\iff the memory is full
+          \end{itemize}
+
+        \end{itemize}
+
+
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Add to the rear of a linked list queue}
+  \begin{ncodedef}
+void insert(queue_ptr *pfront, 
+            queue_ptr *prear, 
+            element item) {
+    queue_ptr temp = (queue_ptr)malloc(sizeof(queue));
+
+    if(IS_FULL(temp)) {
+        fprintf(stderr, ``The memory is full\n''); 
+        exit(1);
+    } 
+
+    temp->item=item; 
+    temp->link=NULL; 
+    
+    if (*pfront) 
+        (*prear)->link=temp; 
+    else
+        *pfront = temp; 
+
+    *prear = temp;
+}    
+  \end{ncodedef}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Delete from the front of a linked list queue}
+  \begin{ncodedef}
+element delete(queue_ptr *pfront) { 
+    queue_ptr temp=*pfront;
+    element item;
+
+    if (IS_EMPTY(*pfront)) {
+        fprintf(stderr,``The queue is empty\n'');
+        exit(1); 
+    }
+
+    item=temp->item; 
+    *pfront=temp->link; 
+    free(temp);
+
+    return item;
+}    
+  \end{ncodedef}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Representing Stack and Queues by Linked List}
+Advantages are
+\begin{itemize}
+\item no data movement is necessary: O(1) operation
+\item no full condition check is necessary
+\item size is growing and shrinking dynamically
+\end{itemize}
+
+
+\end{frame}
+
+
+\section{Doubly Linked Lists}
+\begin{frame}[t]
+  \frametitle{Doubly Linked Lists}
+Problems of singly linked lists
+\begin{itemize}
+\item  move to only one way direction
+\item hard to find the previous node
+\item hard to delete the arbitrary node
+\end{itemize}
+
+
+\bigskip
+doubly linked circular list
+\begin{itemize}
+\item doubly lists + circular lists
+\item allow two links
+\item two way direction
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Doubly Linked Lists}
+  \begin{ncodedef}
+typedef struct node *node_ptr; 
+
+typedef struct node {
+    node_ptr llink; 
+    element item; 
+    node_ptr rlink;
+};    
+  \end{ncodedef}
+
+  \begin{center}
+    \includegraphics<2>[width=0.9\textwidth]{figures/fig08_double.png}
+  \end{center}
+
+
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Doubly Linked Lists}
+suppose that \texttt{ptr} points to any node in a doubly linked list
+
+\begin{ncodedef}
+ptr 
+
+ptr->llink->rlink
+
+ptr->rlink->llink
+\end{ncodedef}
+
+
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Doubly Linked Lists}
+introduce dummy node, called, head
+\begin{itemize}
+\item to represent empty list
+\item make easy to implement operations 
+\item contains no information in item field
+\end{itemize}
+\bigskip
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/fig09_double_head.png}
+    \caption{empty doubly linked circular list with head node}
+  \end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Doubly Linked Lists}
+  \begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/fig09_double_head1.png}
+    \caption{doubly linked circular list with head node}
+  \end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Insert into a doubly linked circular list}
+  \begin{ncodedef}
+void d_insert(node_ptr node, node_ptr newnode) {
+    /* insert newnode to the right of node */ 
+    newnode->llink = node;
+    newnode->rlink = node->rlink; 
+
+    node->rlink->llink = newnode; 
+    node->rlink = newnode;
+}    
+  \end{ncodedef}
+
+time complexity O(1)
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Insert into a doubly linked circular list}
+
+Insertion into an empty doubly linked circular list
+
+    \includegraphics[width=0.4\textwidth]{figures/fig10_double_insert.png}
+    \includegraphics<2>[width=0.4\textwidth]{figures/fig10_double_insert1.png}
+  
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{Deletion from a doubly linked circular list}
+  \begin{ncodedef}
+void ddelete(node_ptr node, node_ptr deleted) {
+    /* delete from the doubly linked list */ 
+    if (node == deleted)
+        printf("Deletion of head node not permitted.\n");
+    else {
+        deleted->llink->rlink = deleted->rlink; 
+        deleted->rlink->llink = deleted->llink; 
+        free(deleted);
+    } 
+}    
+  \end{ncodedef}
+
+Time complexity: O(1)
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Deletion from a doubly linked circular list}
+Deletion in a doubly linked circular list
+
+    \includegraphics[width=0.4\textwidth]{figures/fig11_double_delete.png}
+    \includegraphics<2>[width=0.4\textwidth]{figures/fig11_double_delete1.png}
+  
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Notes on doubly linked circular list}
+  \begin{itemize}
+  \item don't have to traverse a list - time complexity of O(1)
+  \item insert(delete) front/middle/rear is all the same
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
