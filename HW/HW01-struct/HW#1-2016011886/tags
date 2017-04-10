@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+MALLOC	game.c	4;"	d	file:
+MALLOC	gamerules.c	5;"	d	file:
+WhatWeapon	gamerules.c	/^void WhatWeapon(int weapon)\/\/definition of weapon$/;"	f
+fight	gamerules.c	/^int fight(teammates* player,teammates* computer,int i,int k)$/;"	f
+id	gamerules.h	/^	int id;$/;"	m	struct:teammates
+life	gamerules.h	/^	int life;$/;"	m	struct:teammates
+lifecheck	gamerules.c	/^int lifecheck(teammates* player,teammates* computer,int i,int k)$/;"	f
+main	game.c	/^int main(void)$/;"	f
+make_team	gamerules.c	/^teammates* make_team(int N)$/;"	f
+print_info	gamerules.c	/^void print_info(teammates* player,int index,int distinguish)$/;"	f
+sumscore	gamerules.c	/^int sumscore(teammates* player,int playernum)\/\/sum player's all life$/;"	f
+teammates	gamerules.h	/^typedef struct teammates{$/;"	s
+teammates	gamerules.h	/^}teammates;$/;"	t	typeref:struct:teammates
+teamname	gamerules.h	/^	char teamname[100];$/;"	m	struct:teammates
+weapon	gamerules.h	/^	int weapon;$/;"	m	struct:teammates
