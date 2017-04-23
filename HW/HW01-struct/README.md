@@ -59,6 +59,7 @@ If you are found cheating, the person who gave the work and the person who copie
 
 ## Deadline
 The work must be uploaded to the system within two weeks of time counting the day of the announcement. 
+* Due date: 2017-04-12
 
 ## The Score
 * **10 points:** Program compiles and runs successfully. Report with all the required information, Makefile, c and other related files uploaded on time. 
