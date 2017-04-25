@@ -114,7 +114,7 @@ It has a hierarchical structure
   \item[\textbf{Height of a tree}] The longest path length from the
     root to a leaf (e.g., the height is 3)\\
 \includegraphics[height=0.3\textheight]{./figures/fig02_def_height.png}
-\newpage  \item[\textbf{depth}] the total number of egdes from root node to a
+\newpage  \item[\textbf{depth}] the total number of edges from root node to a
     particular node (e.g., depth of F is 2. Depth of M is 3)
   \item[\textbf{depth of the tree}] the total number of edges from
     root node to a leaf node in the longest path (e.g., depth of the
@@ -271,7 +271,7 @@ a binary tree with n nodes that
   \frametitle{Binary Tree Representation}
 There are two methods to represent the binary tree
 \begin{enumerate}
-\item Array Rerpesentation
+\item Array Representation
 \item Linked List Representation
 \end{enumerate}
 \end{frame}
@@ -351,7 +351,7 @@ complete
 
 
 \begin{frame}[t]
-  \frametitle{Linked List Representation cnt'd}
+  \frametitle{Linked List Representation cont'd}
 leaf node's link field contains NULL pointer
 
   \begin{center}
@@ -530,7 +530,7 @@ details
 \item much storage: multiple activations
 exist internally
 \item  slow execution speed
-\item  application: factorial, fibonacci
+\item  application: factorial, Fibonacci
 number, tree traversal, binary search, tower of Hanoi, quick sort, LISP structure
 \end{itemize}
 \end{frame}
@@ -675,7 +675,7 @@ return ((!first && !second) ||
   \frametitle{Heap Structure}
   \begin{lstlisting}
 #define MAX_ELEMENTS 200
-#define HEAP_FULL(n) (n == MaX_ELEMENTS - 1) 
+#define HEAP_FULL(n) (n == MAX_ELEMENTS - 1) 
 #define HEAP_EMPTY(n) (!n)
 
 typedef struct {
@@ -727,7 +727,7 @@ Possible priority queue representations
 
 \begin{tabular}{l c c}
   Representation & insertion & deletion \\ \hline \hline
-unordered arry & O(1) & O(n) \\
+unordered array & O(1) & O(n) \\
 unordered linked list & O(1) & O(n) \\
 sorted array & O(n) & O(1) \\
 sorted linked list & O(n) & O(1) \\
@@ -821,7 +821,7 @@ Heap before deletion
 
     \includegraphics[height=0.3\textheight]{./figures/fig14_heap_delete.png}
 &    
-Heap Stucture
+Heap Structure
 
     \includegraphics[height=0.3\textheight]{./figures/fig14_heap_delete1.png}
 \pause \\
@@ -991,7 +991,7 @@ void insert_node(tree_ptr *node, int num) {
     if (temp || !(*node)) {
         ptr = (tree_ptr)malloc(sizeof(node)); 
         if (IS_FULL(ptr)) {
-            fprintf(stderr,"The momory is full\n"); 
+            fprintf(stderr,"The memory is full\n"); 
             exit(1);
         }
         ptr->data = num;
@@ -1048,7 +1048,7 @@ Insert 35
 
 
 \begin{frame}[t]
-  \frametitle{Deletiing from  BST}
+  \frametitle{Deleting from  BST}
 deletion of a leaf node
 \begin{itemize}
 \item deletion of a node with 1 child
