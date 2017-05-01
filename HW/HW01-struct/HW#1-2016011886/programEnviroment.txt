@@ -1,0 +1,183 @@
+2016011886 Kim Chang Hee
+
+/*****************program Enviroment************************/
+
+CPU Intel Core i5-6200U CPU@2.30GHz
+OS 64-bit ubuntu 16.04 LTS
+Diks 40.0 GB
+Memory 1.9 Gib
+Compiler ver. gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4);
+
+/**********************************************************/
+
+Purpose
+this program is for Rock Scissor Papper game with computer
+
+Structure
+the included gamerules.h has struct that contains team's name, id, weapon, and life of each teammates.
+
+Idea(Design of the program)
+I match the weapons to number 1,2,3
+1 is the Rock
+2 is the Scissor
+3 is the Papper
+and in function fight
+1-2 = -1
+2-3 = -1
+3-1 = 2 so the win case is the -1 or 2
+and 
+3-2 = 1
+2-1 = 1
+1-3 = -2 os the lose case is the 1 or -2
+(in fight myweapon-comweapon is the result);
+and if the result is the 0 tie game
+
+/************************************************************/
+
+space complexity
+
+
+struct teammates{}
+112 byte;
+
+teammates* make_team(int N);
+: 112*N byte;
+
+/*******main.c********************/
+
+teammates *play, *com;  2*4 = 8byte
+
+make_team * 2; 112*playernum + 112*comnum byte
+
+int playernum, comnum, playern,comn,i; 20byte
+
+so main.c's space complexity is 112*(playernum + comnum) + 28 (byte)
+
+/**********************************************************************************/
+
+time complexity
+
+gamerules.c
+
+
+make_team(int N){
+				it takes only O(N)
+}
+
+lifecheck(teammates,teammates,int i, int k){
+			it takes only O()
+}
+
+fight(teammates,teammates,int i, int k){
+				this func's O() while loop can be negligible
+}
+
+sumscore(teammates,int playernum){
+				this func's O(playernum)
+}
+
+WhatWeapon(int weapon){
+				this func's O()
+}
+
+print_info(teammates, int index, int distinghish){
+				there is no loop so O()
+}
+
+
+game.c used only gamerules.c's functions
+this file has a 2 of make_team() ---O(N);
+other functions' time compliexity has constant value.
+
+
+
+
+
+/*******************************************************************************/
+Algorithms in Rock Scissor Papper game
+
+game.c
+
+int main(void){
+				//make 2 teams
+				//save max index to show the results
+				//using fight()
+				//function fight() can check the each player's life
+				//one team's player is all dead then culculate the score
+				//score will be saved in playernum and comnum
+}
+
+
+gamerules.c
+
+
+/******************/
+in this program 
+the Rock is 1
+the Scisser is 2
+the Paper is 3
+/******************/
+
+
+make_team(int sizeof(team))
+{
+	//create team and return pointer
+}
+
+fight(teammates* player, teammates* computer)
+{
+	//check the life
+	//who's life is 0 then end function and return specific value
+	//1:goto
+	***
+	//result = player's weapon - computer's weapon
+	
+	/*player win the game*/
+	//if result = -1 or 2
+	//computer's life is 0
+	//quest player to exchange the weapon
+	//50% the player can success
+	//goto 1
+	***
+	//player lose the game
+	//result = 1 or -2
+	//player's life is 0
+	//goto 1
+	***
+	//tie game!!!
+	//result = 0
+	//goto 1
+}
+
+sumscore(teammates* player, int playernum)
+{
+				//sum all player's  life
+}
+
+WhatWeapon(int weapon)
+{
+	//in this program 
+	//the Rock is 1
+	//the Scisser is 2
+	//the Paper is 3
+	// print the weapon's name
+}
+
+print_info(teammates* player,int index,int distinguish)
+{
+				//print the player's
+				//team, id, weapon, life
+				//hide weapon or not
+}
+
+lifecheck(teammates* player,teammates* computer,int i,int k)
+{
+				//check the life of eack teammate
+				//player is dead return -1
+				//computer is dead return -2
+				//both is dead return -3
+}
+
+/*************************************************************************/
+
+
