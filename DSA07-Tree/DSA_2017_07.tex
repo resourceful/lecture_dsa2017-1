@@ -375,14 +375,21 @@ Add a fourth field, called parent, to know the parent of a random nodes
   \begin{itemize}
   \item each node in a tree has a variable sized nodes
   \item hard to represent it by using array
-  \item use linked list to represent a tree needs k link fields per node where k is degree of tree
+  \item use linked list to represent a tree needs $k$ link fields per node
+    \begin{itemize}
+    \item  $k$ is the degree of tree
+    \end{itemize}
+
   \item There are two types of links
     \begin{itemize}
     \item non-null links
     \item null links
     \end{itemize}
-  \item number of non-null links are $n-1$
-  \item number of null links are $n \cdot k - (n-1)$
+  \item if the number of non-null links are $n-1$
+    \begin{itemize}
+    \item the number of null links are $n \cdot k - (n-1)$
+    \end{itemize}
+
   \end{itemize}
 \end{frame}
 
@@ -390,9 +397,12 @@ Add a fourth field, called parent, to know the parent of a random nodes
 \begin{frame}[t]
   \frametitle{Converting a tree into a binary Tree}
   \begin{enumerate}
-  \item (parent, $child_1$, $child_2$, $\ldots$, $child_x$) $\rightarrow$ 
-        (parent, leftmost-child, next-right-sibling) $\rightarrow$  
-        left-child right-sibling representation
+  \item Use left-child right sibling representation
+    \begin{itemize}
+    \item (parent, $child_1$, $child_2$, $\ldots$, $child_x$)
+      $\rightarrow$ (parent, leftmost-child, next-right-sibling)
+    \end{itemize}
+
    \item simply rotate the left-child right-sibling tree clockwise by 45 degrees
      \begin{itemize}
      \item right field of root node always have null link
