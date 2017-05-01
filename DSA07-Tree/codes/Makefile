@@ -1,5 +1,11 @@
-all: ex_binarytree.c
-	gcc -Wall -O0 -o ex_binarytree $<
+all: %
+
+ex_binarytree: ex_binarytree.c
+	gcc -Wall -O0 -o $@ $<
+
+ordering: ordering.c
+	gcc -Wall -O0 -o $@ $<
 
 clean:
-	ex_binarytree
+	rm ex_binarytree ordering
+
