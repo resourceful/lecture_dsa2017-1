@@ -7,27 +7,27 @@ typedef struct BinaryTree{
 	struct BinaryTree* right;
 } TreeNode;
 
-void inorder( TreeNode *root ){
-	if (root){
-		inorder(root->left); // traverse left tree
-		printf("%d\n", root->data); // visit the node
-		inorder(root->right); // traverse to right tree
+void inorder( TreeNode *ptr ){
+	if (ptr){
+		inorder(ptr->left); // traverse left tree
+		printf("%d\n", ptr->data); // visit the node
+		inorder(ptr->right); // traverse to right tree
 	}
 }
 
-void preorder( TreeNode *root ){
-	if (root){
-		printf("%d\n", root->data); // visit the node
-		preorder(root->left); // traverse left tree
-		preorder(root->right); // traverse to right tree
+void preorder( TreeNode *ptr ){
+	if (ptr){
+		printf("%d\n", ptr->data); // visit the node
+		preorder(ptr->left); // traverse left tree
+		preorder(ptr->right); // traverse to right tree
 	}
 }
 
-void postorder( TreeNode *root ){
-	if (root){
-		postorder(root->left); // traverse left tree
-		postorder(root->right); // traverse to right tree
-		printf("%d\n", root->data); // visit the node
+void postorder( TreeNode *ptr ){
+	if (ptr){
+		postorder(ptr->left); // traverse left tree
+		postorder(ptr->right); // traverse to right tree
+		printf("%d\n", ptr->data); // visit the node
 	}
 }
 
@@ -39,14 +39,14 @@ int main(){
 	TreeNode N5 = {20, &N3, &N4};
 	TreeNode N6 = {15, &N2, &N5};
 
-	TreeNode *root = &N6;
+	TreeNode *ptr = &N6; // root of the tree
 
 	printf("Start of Preoder traverse\n");
-	preorder(root);
+	preorder(ptr);
 	printf("Start of Inoder traverse\n");
-	inorder(root);
+	inorder(ptr);
 	printf("Start of Postoder traverse\n");
-	postorder(root);
+	postorder(ptr);
 
 	
 }

@@ -321,10 +321,11 @@ Representing tree with linked list
 \end{itemize}
 
 \begin{lstlisting}
-typedef struct node {
+typedef struct BinaryTreeNode {
     int data;
-    node left_child, right_child;
-};
+    struct BinaryTreeNode* left_child;
+    struct BinaryTreeNode* right_child;
+} node;
 \end{lstlisting}
 \begin{center}
         \includegraphics[height=0.2\textheight]{figures/fig08_linked_list.png}
@@ -444,7 +445,7 @@ $A/B*C*D+E$ (infix form)
 Inorder Traversal
 
 \begin{lstlisting}
-void inorder(tree_ptr ptr) { 
+void inorder(TreeNode *ptr) { 
     if(ptr) {
         inorder(ptr->left_child); 
         printf("%d",ptr->data); 
@@ -487,7 +488,7 @@ call of inorder & value in root & action & call of inorder & value in root & act
   \frametitle{Preorder Traversal}
 
 \begin{lstlisting}
-void preorder(tree_ptr ptr) { 
+void preorder(TreeNode *ptr) { 
     if(ptr) {
         printf("%d",ptr->data); 
         preorder(ptr->left_child); 
@@ -504,7 +505,7 @@ output in the order $+**/ABCDE$
 \begin{frame}[t, fragile]
   \frametitle{Postorder Traversal}
 \begin{lstlisting}
-void postorder(tree_ptr ptr) { 
+void postorder(TreeNode *ptr) { 
     if(ptr) {
         postorder(ptr->left_child); 
         postorder(ptr->right_child);
