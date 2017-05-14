@@ -90,11 +90,11 @@ It has a hierarchical structure
   \item[\textbf{Internal (non-terminal, internal) node}] node with
     degree one or more (e.g., A, B, C, D, E, and H)
   \item[\textbf{ancestor}] all the nodes along the path from the root
-    to the node (e.g., ancestor of K is K, E, B, and A. Ancestor of H
-    is H, D, and A)\\
+    to the node (e.g., ancestor of K is E, B, and A. Ancestor of H
+    is D, and A)\\
 \includegraphics[height=0.3\textheight]{./figures/fig02_def_ancestor.png}
   \item[\textbf{descendant}] all the nodes that are in its subtrees
-    (e.g., Descendants of E is E, K, and L. Descendants of D is D, H,
+    (e.g., Descendants of E is K, and L. Descendants of D is H,
     M, I, and J)\\
 \includegraphics[height=0.3\textheight]{./figures/fig02_def_descendant.png}
   \item[\textbf{Degree of a node}] The number of subtrees of node, in
@@ -630,12 +630,13 @@ tree_ptr copy(tree_ptr original) {
     if (original) {
         temp = (tree_ptr)malloc(sizeof(node)); 
 
-        if (IS_FULL(temp)) exit(1); 
-            temp->left_child = copy(original->left_child); 
-            temp->right_child = copy(original->right_child); 
-            temp->data = original->data; 
-            return temp;
-         }
+        if (IS_FULL(temp)) 
+            exit(1); 
+        temp->left_child  = copy(original->left_child); 
+        temp->right_child = copy(original->right_child); 
+        temp->data        = original->data; 
+        return temp;
+    }
     return NULL; 
 }  
 \end{lstlisting}
@@ -647,13 +648,11 @@ tree_ptr copy(tree_ptr original) {
 Modified version of preorder
 \begin{lstlisting}
 int equal(tree_ptr first, tree_ptr second) {
-return ((!first && !second) || 
-       (first && second 
-       && (first->data == second->data) 
-       && equal(first->left_child,
-                second->left_child) 
-       && equal(first->right_child,
-                second->right_child));
+    return ((!first && !second) || 
+             (first && second 
+                    && (first->data == second->data) 
+                    && equal(first->left_child,  second->left_child) 
+                    && equal(first->right_child, second->right_child));
 }
 \end{lstlisting}
 \end{frame}
