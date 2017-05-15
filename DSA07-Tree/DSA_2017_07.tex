@@ -683,6 +683,7 @@ int equal(tree_ptr first, tree_ptr second) {
 
 \begin{frame}[t, fragile]
   \frametitle{Heap Structure}
+\label{lst:heapstruct}
   \begin{lstlisting}
 #define MAX_ELEMENT 200
 
@@ -699,7 +700,6 @@ void init(HeapType *h){
 	h->heap_size = 0;
 }
   \end{lstlisting}
-\label{lst:heapstruct}
 \end{frame}
 
 
@@ -800,7 +800,7 @@ Insert 35 into heap
 \begin{frame}[t, fragile]
   \frametitle{Insertion into a max heap}
 
-Refer to \ref{lst:heapstruct} for definitions and sturctures
+Refer to page \ref{lst:heapstruct} for definitions and sturctures
 
   \begin{lstlisting}
 // add item to the heap
@@ -871,7 +871,7 @@ Final heap
 \begin{frame}[t, fragile, allowframebreaks]
   \frametitle{Deletion from a max heap}
 
-Refer to \ref{lst:heapstruct} for definitions and sturctures
+Refer to page \ref{lst:heapstruct} for definitions and sturctures
   \begin{lstlisting}
 // delete the item
 element delete_max_heap(HeapType *h){
