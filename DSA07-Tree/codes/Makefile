@@ -12,8 +12,8 @@ calculator: calculator.c
 dic: dic.c
 	gcc -Wall -O0 -o $@ $<
 
-BST-demo: BST_demo
-	gcc -Wall -O0 -o $@ $<
+BST_demo: BST_demo.c
+	gcc -g -Wall -O0 -o $@ $<
 
 heap: heap.c
 	gcc -Wall -O0 -o $@ $<
