@@ -42,7 +42,7 @@
 \begin{frame}[t]
   \frametitle{First use of Graph}
   \begin{itemize}
-  \item Euler used graph to solve the Koenigsberg bridge problem in 1736
+  \item Euler used graph to solve the K\"oenigsberg bridge problem in 1736
   \item ``Starting at some land area, is it possible to return to the starting point after walking across each of the bridges exactly once?''
   \end{itemize}
 \begin{center}
@@ -79,7 +79,7 @@
   \item $E$ is the edge set. Ex. $E= \{(0,1), (1,3), (2,3), (0, 2)\}$
     \begin{itemize}
     \item Each edge connects two different vertices
-    \item Edges are also called acrs and lines
+    \item Edges are also called arcs and lines
     \end{itemize}
 
   \end{itemize}
@@ -91,9 +91,9 @@
 \begin{frame}[t]
   \frametitle{Directed and Undirected Graphs}
   \begin{itemize}
-  \item Directed Edge has an \textit{Orientation} $(u, v)$
+  \item Directed Edge has an \textit{Orientation} $<u, v>$
     \begin{itemize}
-    \item Directed graph = Every Edge has an orientation
+    \item Directed graph (Digraph) = Every Edge has an orientation
     \end{itemize}
   \end{itemize}
   \begin{center}
@@ -356,7 +356,7 @@ number of edges in a complete directed graph is $n(n-1)$.
 \begin{frame}[t]
   \frametitle{Vertex Degree}
   \begin{itemize}
-  \item \textbf{Vertex Degree} is the number of edges of the vertex
+  \item \textbf{Vertex Degree} is the number of edges incident to that vertex
   \item Degree(2) = 2, Degree(5) =3, Degree(3) = 1, 
   \end{itemize}
   \begin{center}
@@ -480,18 +480,19 @@ number of edges in a complete directed graph is $n(n-1)$.
   \item  If $G$ is undirected graph and $(u,v)$ is an edge of $G$, then
     \begin{itemize}
     \item $u$ and $v$ are \textbf{adjacent}
-    \item $(u,v)$ is \textbf{incident} on vertices $u$ and $v$
+    \item $(u,v)$ is \textbf{incident}(부속/교차) on vertices $u$ and $v$
     \end{itemize}
 
 \item If $G$ is directed graph and $<u,v>$ is an edge of $G$, then
   \begin{itemize}
   \item $u$ is \textbf{adjacent} to $v$
   \item $v$ is \textbf{adjacent} from $u$
+  \item the edge $<u, v>$ is incident to $u$ and $v$
   \end{itemize}
 
 \item Path from $u$ to $v$
 \item \textbf{Simple path} : a path in which all vertices, except
-  possibly the first and the last, are distinct
+  possibly the first and the last, are distinct (repeats no vertices)
 \item \textbf{Cycle} : a simple path in which the first and the last
   vertices are the same
   \end{itemize}
@@ -547,7 +548,7 @@ number of edges in a complete directed graph is $n(n-1)$.
 
 
 \begin{frame}[t]
-  \frametitle{Propertiex of Adjacency Matrix}
+  \frametitle{Properties of Adjacency Matrix}
   \begin{itemize}
   \item Diagonal entries are zero
   \item Adjacency matrix of an undirected graph is symmetric
