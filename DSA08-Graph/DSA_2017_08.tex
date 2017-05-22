@@ -607,11 +607,11 @@ number of edges in a complete directed graph is $n(n-1)$.
       \begin{column}{0.4\textwidth}
 \begin{tabular}{c | c c c c c }
   ~ & 1 & 2 & 3 & 4 & 5 \\ \hline
-  1 & \cellcolor{blue!25}0 & 1 & 0 & 1 & 0 \\ 
-  2 & 1 & \cellcolor{blue!25}0 & 0 & 0 & 1 \\
-  3 & 0 & 0 & \cellcolor{blue!25}0 & 0 & 1 \\
-  4 & 1 & 0 & 0 & \cellcolor{blue!25}0 & 1 \\
-  5 & 0 & 1 & 1 & 1 & \cellcolor{blue!25}0 
+  1 & \cellcolor{blue!25}0 & 0 & 0 & 1 & 0 \\ 
+  2 & 1 & \cellcolor{blue!25}0 & 0 & 0 & 0 \\
+  3 & 0 & 0 & \cellcolor{blue!25}0 & 0 & 0 \\
+  4 & 0 & 0 & 0 & \cellcolor{blue!25}0 & 1 \\
+  5 & 0 & 1 & 1 & 0 & \cellcolor{blue!25}0 
 \end{tabular}        
       \end{column}
     \end{columns}
@@ -648,8 +648,8 @@ number of edges in a complete directed graph is $n(n-1)$.
         \NOEA(1){2}
         \EA(4){5}
         \NOEA(5){3}
-        \Edges[style=->](2, 1, 4, 5, 2)
-        \Edges[style=->](5, 3)
+        \Edges(2, 1, 4, 5, 2)
+        \Edges(5, 3)
       \end{tikzpicture}
       \end{column}
       \begin{column}{0.4\textwidth}
