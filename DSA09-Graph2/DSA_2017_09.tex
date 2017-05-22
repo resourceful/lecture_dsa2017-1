@@ -315,20 +315,42 @@ Connected Graph
 \begin{frame}[t]
   \frametitle{Connected Component}
   \begin{itemize}
-  \item A maximal subgraph that is connected.
+  \item A connected component is a \textit{maximal subgraph} in which all vertices are reachable from every other vertices.
     \begin{itemize}
+    \item \textit{maximal} means that it is the largest possible subgraph
     \item Cannot add vertices and edges from original graph and retain
       connectedness.
-    \end{itemize}
   \item A connected graph has exactly 1 component. 
+    \end{itemize}
   \end{itemize}
-\bigskip
-\begin{itemize}
-\item A \textbf{strongly connected component} of a directed graph is a
-  maximal subgraph that is strongly connected.
-\end{itemize}
+\begin{center}
+    \begin{tikzpicture}
+    \GraphInit[vstyle=Normal]\SetGraphUnit{1.3}
+    \begin{scope}[rotate=-135]
+      \Vertices{circle}{1, 2, 3, 4, 5}
+    \end{scope}
+    \EA[unit= 2](3){6}
+    \Edges(1, 2, 3, 4, 5, 1, 3, 5)
+    \Edges(1, 4, 2, 5)
+    \end{tikzpicture}
+\end{center}
 \end{frame}
 
+\begin{frame}[t]
+  \frametitle{Connectedness}
+There are two types of connected components in digraphs
+\begin{itemize}
+\item Strong Components
+  \begin{itemize}
+  \item maximal subgraph in which there is a path from every vertex to every vertex following all the edges in the direction they are pointing
+  \end{itemize}
+\item Weak Compnents
+  \begin{itemize}
+  \item maximal subgraph which would be connected if we ignore the direction of the edges
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Cycles and Connectedness}
