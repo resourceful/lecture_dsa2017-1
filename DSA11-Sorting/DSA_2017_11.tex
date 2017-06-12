@@ -255,7 +255,7 @@ Best average time
     \end{itemize}
   \item Recursively apply quick sort to the first and the third part
     \begin{itemize}
-    \item swap the out of order entries from the first and the thir part
+    \item swap the out of order entries from the first and the third part
     \end{itemize}
   \end{enumerate}
 
@@ -562,7 +562,7 @@ Initial max heap construction
 Worst case time complexity:
 
 $log_2n + log_2(n-1) + \cdots + log_22$
-$=O(n\cdot log_2n$
+$=O(n\cdot log_2n)$
 \end{frame}
 
 
@@ -616,6 +616,17 @@ $    \printarray[3em]{2,  12, 32,  41, \mathbf{1}10, \mathbf{1}51,      \mathbf{
   \end{center}
 
 
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Radix Sort: Time complexity}
+Let there be $d$ digits in input integers.
+
+In general, Radix sort takes $O(d\cdot (n+b))$ time where $b$ is the base of the given number.
+\bigskip
+Assume that $k = max(n)$, then $d = O(log_bk)$. The overall time complexity becomes $O((n+b)\cdot log_bk)$
+\bigskip
+If we further assume that $k = n^c$, where $c$ is constant, the time complexity becomes $O(n\cdot log_bn)$
 \end{frame}
 
 
