@@ -746,3 +746,50 @@ aboveskip=1em
 
 
 \renewcommand\UrlFont{\rmfamily\footnotesize}
+
+
+
+\usetikzlibrary{positioning}
+\tikzset{
+node of list/.style = { 
+             draw, 
+             fill=orange!20, 
+             minimum height=6mm, 
+             minimum width=6mm,
+             node distance=7mm
+   },
+link/.style = {
+     *-stealth,
+     shorten >=1pt
+     },
+array element/.style = {
+    draw, fill=white,
+    minimum width = 6mm,
+    minimum height = 6mm
+  }
+}
+
+\def\LinkedListArray#1{%
+  \foreach \element in \list {
+     \node[node of list, right = of aux, name=\element] {\element};
+     \coordinate (aux) at (\element.west);
+  } 
+}
+\def\LinkedList#1{%
+  \foreach \element in \list {
+     \node[node of list, right = of aux, name=\element] {\element};
+     \node[node of list, name=aux2, anchor=west] at ([xshift=-.4pt] \element.east) {};
+     \draw[link] (aux) -- (\element);
+     \coordinate (aux) at (aux2);
+   }
+   \fill (aux) circle(2pt);
+   %\node at (aux) {*};
+}
+
+% Sample
+% \begin{tikzpicture}
+% \foreach \index/\list in {1/{a,b,null}, 2/{c,null}, 3/{d,null}} {
+%   \node[array element] (aux) at (0,-\index) {\index};
+%   \LinkedList{\list}
+% }
+% \end{tikzpicture}
