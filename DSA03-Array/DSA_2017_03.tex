@@ -656,7 +656,7 @@ term a[MAX_TERMS];
 \end{frame}
 
 \begin{frame}[t, fragile]
-  \frametitle{The Sparse Matrix: As Tripels}
+  \frametitle{The Sparse Matrix: As Triples}
   \begin{center}
     \begin{tabular}{r c c c}
       & row & col & value \\ \hline
@@ -746,7 +746,7 @@ void transpose(term a[], term b[]) {
                 if(a[j].col == i) {
                   b[currentb].row = a[j].col;  
                   b[currentb].col = a[j].row;  
-                  b[currentb].value = a[j].valuel;  
+                  b[currentb].value = a[j].value;  
                   cuurentb++;
             }
     }
