@@ -153,7 +153,7 @@ for (i=0; i<n; i++) {
 
 \end{frame}
 
-\begin{frame}[t]
+\begin{frame}[t,fragile]
   \frametitle{Algorithm Specification: Selection Sort}
 
 \textbf{finding the smallest integer}
@@ -164,11 +164,42 @@ for (i=0; i<n; i++) {
 \end{itemize}
 
 interchanging minimum with list[i]
+
 \begin{itemize}
-\item \textbf{function}: swap($\&$a,$\&$b) easier
-\item \textbf{macro}: swap(x,y,t) no type-checking
+	\item\textbf{function}: swap($\&$a,$\&$b)
 \end{itemize}
 
+\begin{itemize}
+	\item\textbf{macro}: swap(x,y,t)
+\end{itemize}
+
+\begin{itemize}
+	\item The function's code is easier to read than that of the macro but the macro works with any data type
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t,fragile]
+\frametitle{Algorithm Specification: Selection Sort}
+
+\begin{itemize}
+\item\textbf{function}: swap($\&$a,$\&$b)
+\end{itemize}
+\begin{codedef}
+void swap(int *x, int *y){
+	int temp = *x;
+	
+	*x = *y;
+		
+	*y = temp;
+}
+\end{codedef}
+\begin{itemize}
+\item\textbf{macro}: swap(x,y,t)
+\end{itemize}
+\begin{codedef}
+#define SWAP(x,y,t) ((t) = (x), (x) = (y), (y) = (t))
+\end{codedef}
 \end{frame}
 
 \begin{frame}[t]
@@ -198,6 +229,20 @@ denote left and right
 let middle=(left+right)/2 middle position in the list
 
 compare list[middle] with the searchnum and adjust left or right
+	\begin{center}
+	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\hline
+	value & \cellcolor{green}1 & 5 & 7 & 8 & \cellcolor{yellow}13 & 19 & 20 & 23 & \cellcolor{red}29 \\
+	\hline
+	index & \cellcolor{green}0 & 1 & 2 & 3 & \cellcolor{yellow}4 & 5 & 6 & 7 & \cellcolor{red}8 \\
+	\hline
+	\end{tabular}
+	\end{center}
+\begin{center}
+		\begin{small}
+			 assume searchnum is 23
+		\end{small}
+\end{center}
 
 \end{frame}
 \begin{frame}[t]
@@ -208,30 +253,72 @@ compare list[middle] with searchnum
 \item searchnum = list[middle] return middle 
 \item searchnum > list[middle] set left to middle+1
 \end{enumerate}
+\begin{center}
+	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+		\hline
+		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & 20 & 23 & \cellcolor{red}29 \\
+		\hline
+		index & 0 & 1 & 2 & 3 & 4 & \cellcolor{green}5 & 6 & 7 & \cellcolor{red}8 \\
+		\hline
+	\end{tabular}
+\end{center}
 
-if searchnum has not been found
-and there are more integers to check
-\begin{itemize}
-\item recalculate middle and continue search
-\end{itemize}
+\end{frame}
 
+\begin{frame}[t]
+	\frametitle{Algorithm Specification: Binary Search}
+	if searchnum has not been found
+	and there are more integers to check
+	\begin{itemize}
+		\item recalculate middle and continue search
+		\item determining if there are any elements left to check
+	\end{itemize}
+\begin{center}
+	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+		\hline
+		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & \cellcolor{yellow}20 & 23 & \cellcolor{red}29 \\
+		\hline
+		index & 0 & 1 & 2 & 3 & 4 & \cellcolor{green}5 & \cellcolor{yellow}6 & 7 & \cellcolor{red}8 \\
+		\hline
+	\end{tabular}
+\end{center}
+	\begin{itemize}
+		\item handling the comparison (through a function or a macro)
+	\end{itemize}
+
+	\begin{center}
+		\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+			\hline
+			value & 1 & 5 & 7 & 8 & 13 & 19 & 20 & \cellcolor{green}23 & \cellcolor{red}29 \\
+			\hline
+			index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & \cellcolor{green}7 & \cellcolor{red}8 \\
+			\hline
+		\end{tabular}
+	\end{center}
 \end{frame}
 \begin{frame}[t, fragile]
   \frametitle{Algorithm Specification: Binary Search}
-\begin{codedef}
-while(there are more integers to check) { 
-   middle=(left+right)/2;
-   if(searchnum < list[middle])
-      right=middle-1;
-   else if(searchnum == list[middle])
-       return middle;
-   else left=middle+1;
-}  
-\end{codedef}
+
 \begin{itemize}
-\item determining if there are any elements left to check
-\item handling the comparison (through a function or a macro)
+	\item\textbf {function:} compare(int x, int y)
 \end{itemize}
+
+\begin{codedef}
+int compare(int x, int y){
+	if (x < y) return -1;
+	else if (x == y) return 0;
+		else return 1;
+}
+\end{codedef}
+
+\begin{itemize}
+	\item\textbf {macro:} COMPARE(x, y)
+\end{itemize}
+
+\begin{codedef}
+#define COMPARE(x,y) (((x) < (y) ?-1:  (x) == (y))? 0: 1)
+\end{codedef}
+
 \end{frame}
 \begin{frame}[t, fragile]
   \frametitle{Algorithm Specification: Binary Search}
