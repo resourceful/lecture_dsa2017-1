@@ -172,17 +172,14 @@ interchanging minimum with list[i]
 \begin{itemize}
 	\item\textbf{macro}: swap(x,y,t)
 \end{itemize}
-
 %add additional explanation -kimsongsub 2021.01.27-
 \begin{itemize}
 	\item The function's code is easier to read than that of the macro but the macro works with any data type
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}[t,fragile]
 \frametitle{Algorithm Specification: Selection Sort}
-
 %add function, macro code -kimsongsub 2021.01.28-
 \begin{itemize}
 \item\textbf{function}: swap($\&$a,$\&$b)
@@ -233,7 +230,7 @@ let middle=(left+right)/2 middle position in the list
 compare list[middle] with the searchnum and adjust left or right
 %add Binary Search table -kimsongsub 2021.01.28-
 	\begin{center}
-	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 	\hline
 	value & \cellcolor{green}1 & 5 & 7 & 8 & \cellcolor{yellow}13 & 19 & 20 & 23 & \cellcolor{red}29 \\
 	\hline
@@ -258,7 +255,7 @@ compare list[middle] with searchnum
 \end{enumerate}
 %add Binary Search table -kimsongsub 2021.01.28-
 \begin{center}
-	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 		\hline
 		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & 20 & 23 & \cellcolor{red}29 \\
 		\hline
@@ -279,7 +276,7 @@ compare list[middle] with searchnum
 	\end{itemize}
 %add Binary Search table -kimsongsub 2021.01.28-
 \begin{center}
-	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 		\hline
 		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & \cellcolor{yellow}20 & 23 & \cellcolor{red}29 \\
 		\hline
@@ -290,10 +287,9 @@ compare list[middle] with searchnum
 	\begin{itemize}
 		\item handling the comparison (through a function or a macro)
 	\end{itemize}
-
 %add Binary Search table -kimsongsub 2021.01.28-
 	\begin{center}
-		\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+		\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 			\hline
 			value & 1 & 5 & 7 & 8 & 13 & 19 & 20 & \cellcolor{green}23 & \cellcolor{red}29 \\
 			\hline
@@ -304,7 +300,6 @@ compare list[middle] with searchnum
 \end{frame}
 \begin{frame}[t, fragile]
   \frametitle{Algorithm Specification: Binary Search}
-
 %add compare function and macro code -kimsongsub 2021.01.28-
 \begin{itemize}
 	\item\textbf {function:} compare(int x, int y)
