@@ -230,7 +230,7 @@ let middle=(left+right)/2 middle position in the list
 
 compare list[middle] with the searchnum and adjust left or right
 	\begin{center}
-	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 	\hline
 	value & \cellcolor{green}1 & 5 & 7 & 8 & \cellcolor{yellow}13 & 19 & 20 & 23 & \cellcolor{red}29 \\
 	\hline
@@ -240,7 +240,7 @@ compare list[middle] with the searchnum and adjust left or right
 	\end{center}
 \begin{center}
 		\begin{small}
-			 assume searchnum is 23
+			 assume that searchnum is 23
 		\end{small}
 \end{center}
 
@@ -254,7 +254,7 @@ compare list[middle] with searchnum
 \item searchnum > list[middle] set left to middle+1
 \end{enumerate}
 \begin{center}
-	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 		\hline
 		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & 20 & 23 & \cellcolor{red}29 \\
 		\hline
@@ -274,7 +274,7 @@ compare list[middle] with searchnum
 		\item determining if there are any elements left to check
 	\end{itemize}
 \begin{center}
-	\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 		\hline
 		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & \cellcolor{yellow}20 & 23 & \cellcolor{red}29 \\
 		\hline
@@ -287,7 +287,7 @@ compare list[middle] with searchnum
 	\end{itemize}
 
 	\begin{center}
-		\begin{tabular}{ l | l | l | l | l | l | l | l | l | l |}
+		\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
 			\hline
 			value & 1 & 5 & 7 & 8 & 13 & 19 & 20 & \cellcolor{green}23 & \cellcolor{red}29 \\
 			\hline
@@ -507,14 +507,16 @@ specification
 \item type of its result
 \item description of what the function does
 \end{itemize}
+\end{frame}
 
-classify the function of data type 
-\begin{itemize}
-\item creator/constructor
-\item transformers
-\item observers/reporters
-\end{itemize}
-
+\begin{frame}[t]
+	\frametitle{Data Abstraction}
+	classify the function of data type 
+	\begin{itemize}
+		\item \textbf{creator/constructor}
+		\item transformers
+		\item observers/reporters
+	\end{itemize}
 \end{frame}
 
 \begin{frame}[t, fragile]
