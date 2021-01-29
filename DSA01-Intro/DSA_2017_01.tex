@@ -500,6 +500,7 @@ definition
 
 \end{frame}
 
+%separate page and add additional explanation -kimsongsub 2021.01.29-
 \begin{frame}[t]
   \frametitle{Data Abstraction}
 specification
@@ -516,7 +517,17 @@ classify the function of data type
 \item transformers
 \item observers/reporters
 \end{itemize}
+\end{frame}
 
+\begin{frame}[t]
+	\frametitle{Data Abstraction}
+	classify the function of data type 
+	\begin{itemize}
+		\item\textbf{creator/constructor}: These functions create a new instance of the designated type.
+		\item\textbf{transformers}: These functions also create an instance of the designated type, generally by using one or more other instance.
+		\item\textbf{observers/reporters}: These functions provide information about an instance of the type, but they do not change the instance.
+	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}[t, fragile]
