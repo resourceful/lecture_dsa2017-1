@@ -621,10 +621,12 @@ float abc(float a, float b, float c) {
    return a+b+b*c+(a+b-c)/(a+b)+4.00;
 }    
 \end{codedef}
+% add addition explanation -2021.01.30 kimsongsub-
 \begin{itemize}
 \item input - three simple variables
 \item ouput - a simple variable
-\item fixed space requirements only Sabc(I) = 0
+\item There is no variable space requirement, fixed space requirements only
+\item Sabc(I) = 0
 \end{itemize}
 
 \end{frame}
@@ -683,7 +685,8 @@ handled recursively
   \end{itemize}
 \item for each recursive call
 \end{itemize}
-
+%add additional explanation -2021.01.31 kimsongsub-
+Although Recursive version allows to express very clear, it has a greater overhead than its iterative counterpart
 \end{frame}
 
 \begin{frame}[t]
@@ -735,15 +738,15 @@ Iterative summing of a list of numbers
 \begin{codedef}
 float sum(float list[], int n) { 
    float tempsum=0;
-   count++; /* for assignment */ 
+   \textbf{count}++; /* for assignment */ 
    int i;
    for(i = 0; i < n; i++) { 
-      count++; /* for the for loop */ 
+      \textbf{count}++; /* for the for loop */ 
       tempsum += list[i];
-      count++; /*for assignment*/ 
+      \textbf{count}++; /*for assignment*/ 
    }
-   count++; /* last execution of for */ 
-   count++; /* for return */
+   \textbf{count}++; /* last execution of for */ 
+   \textbf{count}++; /* for return */
    return tempsum;
 }
 \end{codedef}
@@ -758,11 +761,18 @@ float sum(float list[], int n) {
    float tempsum=0;
    int i;
    for(i = 0; i < n; i++)
-      count+=2;
+      count += 2;
    count += 3;
    return tempsum;
 }
 \end{codedef}
+% add additional code -2021.01.30 kimsongsub-
+for one time execution \textbf{sum} function
+\begin{itemize}
+\item count+=2 in for loop n time : 2n
+\item count+=3 : 3
+\item total 2n+3 steps
+\end{itemize}
 \end{frame}
 
 
@@ -854,9 +864,12 @@ void add(int a[][M_SIZE],int b[][M_SIZE],int c[][M_SIZE],
    count++; 
 }
 \end{codedef}
-initially count = 0;
-
-total step count on termination : 2·rows·cols + 2·rows + 1;
+%add additional explanation -2021.01.31 kimsogsub-
+\begin{itemize}
+\item initially count = 0;
+\item total step count on termination : 2·rows·cols + 2·rows + 1;
+\item In this case, If the number of rows is more than the number of columns, swaping rows and columns will take fewer steps
+\end{itemize}
 \end{frame}
 
 
@@ -942,10 +955,12 @@ Matrix addition
     \item exist different algorithm for the same task
     \item which one is faster ?
     \end{itemize}
-
   \end{itemize}
-
 \end{enumerate}
+%add addional explanaion -2021.01.31 kimsongsub-
+\begin{itemize}
+	\item The "worst case" means case that has maxium number of steps 
+\end{itemize}
 
 \end{frame}
 
@@ -970,8 +985,9 @@ comparing time complexities
 Big ``OH''
 \begin{itemize}
 \item \textbf{def} f(n) = O(g(n))
+%add addional description and typo revised -2021.01.31 kimsongsub-
   \begin{itemize}
-  \item iff there exist positive constants c and n0 such that
+  \item iff(if and only if) there exist positive constants c and n0 such that
   \item f(n) $\leq$ c$\cdot$g(n) for all n, n $\geq$ n0(n0 is the break even point)
   \end{itemize}
 \end{itemize}
@@ -985,8 +1001,10 @@ Big ``OH''
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
  f(n) = 25$\cdot$n, g(n) = 1/3$\cdot$n$^2$ 
+ %add addional description -2021.01.31 kimsongsub-
 \begin{itemize}
 \item 25$\cdot$n = O(n$^2$/3) if let c = 1
+\item 'f of n' is 'big-oh of g og n'
 \end{itemize}
 
   \begin{figure}[h]
@@ -1012,13 +1030,15 @@ f(n) = O(g(n))
 \item g(n) should be as small a function
   of n as one can come up with for which f(n) = O(g(n))
 \end{itemize}
+%add addional description -2021.01.31 kimsongsub-
+\textbf{f(n) = O(g(n)) $\neq$  O(g(n)) = f(n)}
 
-f(n) = O(g(n)) $\neq$  O(g(n)) = f(n)
+(It is meaningless to say that O(g(n)) = f(n) )
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
-\textbf{theorem)} if $f(n) = a_{m}n^m + ... + a_1n + a_0$, then $f(n) = O(nm)$
+\textbf{theorem)} if $f(n) = a_{m}n^m + ... + a_1n + a_0$, then $f(n) = O(n^m)$
 
 \textbf{proof)}
 \begin{align*}
@@ -1028,26 +1048,32 @@ f(n) &\leq  |a_k|·n^k + |a_{k-1}|·n^{k-1} +...+ |a_1|\cdot n + |a_0| \\
 & = c\cdot n^k (c = |a_k|+|a_{k-1}|+...+|a_1|+|a_0|) = O(n^k)
 \end{align*}
 \end{frame}
-
+%add page and graph -2021.01.31 kimsongsub-
+\begin{frame}[t]
+	\frametitle{Performance Analysis: Asymptotic Notation}
+	\textbf{Omega}
+	\textbf{def)} f(n) = $\Omega$ (g(n))
+	\begin{itemize}
+		\item iff there exist positive constants c and n0 such that f(n)
+		c$\cdot$ g(n) for all n, n$\geq$ $n^0$
+	\end{itemize}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{figures/fig05_omega.png}
+		\caption{Which one is faster?}
+	\end{figure}
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
-\textbf{Omega}
-\textbf{def)} f(n) = $\Omega$ (g(n))
-\begin{itemize}
-\item iff there exist positive constants c and n0 such that f(n)
-  c$\cdot$ g(n) for all n, n$\geq$ $n^0$
-\end{itemize}
-
-
+  \textbf{Omega}
 \begin{itemize}
 \item g(n) is a lower bound on the value of f(n) for all n, n $\geq$ n0
 \item should be as large a function of n as possible
 \end{itemize}
-
 \textbf{theorem)} if $f(n) = a_mn^m + ... + a_1n + a_0$ and $am > 0$, then $f(n) = \Omega(n^m)$
 \end{frame}
-
+%add page and graph -2021.01.31 kimsongsub-
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
 \textbf{  Theta}
@@ -1056,12 +1082,22 @@ f(n) &\leq  |a_k|·n^k + |a_{k-1}|·n^{k-1} +...+ |a_1|\cdot n + |a_0| \\
 \item iff there exist positive constants $c^1$, $c^2$, and $n^0$ such that
 \item $c^1\cdot g(n) \leq f(n) \leq c^2\cdot g(n)$ for all n, $n\geq n^0$
 \end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/fig05_theta.png}
+	\caption{Which one is faster?}
+\end{figure}
 
-\begin{itemize}
-\item  more precise than both the “big oh” and omega notations
-\item g(n) is both an upper and lower bound on f(n)
-\end{itemize}
+\end{frame}
 
+\begin{frame}[t]
+	\frametitle{Performance Analysis: Asymptotic Notation}
+	\textbf{  Theta}	
+	\begin{itemize}
+		\item  more precise than both the “big oh” and omega notations
+		\item g(n) is both an upper and lower bound on f(n)
+	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}[t]
