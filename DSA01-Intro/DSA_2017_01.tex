@@ -1,7 +1,7 @@
 % Author: Seongjin Lee 
 % Gyeongsang National University, Korea 
 % 
-% 2017-03-06
+% 2021-02-01
 %
 
 \documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
@@ -21,11 +21,11 @@
 
 \setbeamertemplate{blocks}[rounded]
 
-\title{Dasta Structure and Algorithm}
+\title{Data Structure and Algorithm}
 \subtitle{Class 1}
 \author[SJL]{Seongjin Lee}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2017-03-06} 
+\date{2021-02-01} 
 
 \begin{document}
 
@@ -37,7 +37,7 @@
 
 
 %---------------------------------------------------------
-\section{Miscellenea} 
+\section{Miscellanea} %typo revised  -2021.01.29 kimsongsub-
 
 
 
@@ -112,7 +112,7 @@ Verification
 \item \textbf{correctness proofs}: select algorithms that have been proven correct
 \item \textbf{testing}: working code and sets of test data
 \item \textbf{error removal}: If done properly, the correctness proofs
-  and system test indicate erroneous coed
+  and system test indicate erroneous code
 \end{itemize}
 \end{frame}
 
@@ -172,16 +172,15 @@ interchanging minimum with list[i]
 \begin{itemize}
 	\item\textbf{macro}: swap(x,y,t)
 \end{itemize}
-
+%add additional explanation -2021.01.27 kimsongsub-
 \begin{itemize}
 	\item The function's code is easier to read than that of the macro but the macro works with any data type
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}[t,fragile]
 \frametitle{Algorithm Specification: Selection Sort}
-
+%add function, macro code -2021.01.28 kimsongsub-
 \begin{itemize}
 \item\textbf{function}: swap($\&$a,$\&$b)
 \end{itemize}
@@ -229,18 +228,21 @@ denote left and right
 let middle=(left+right)/2 middle position in the list
 
 compare list[middle] with the searchnum and adjust left or right
+%add Binary Search table -2021.01.28 kimsongsub-
 	\begin{center}
-	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l || c | c | c | c | c | c | c | c | c |}
 	\hline
 	value & \cellcolor{green}1 & 5 & 7 & 8 & \cellcolor{yellow}13 & 19 & 20 & 23 & \cellcolor{red}29 \\
 	\hline
 	index & \cellcolor{green}0 & 1 & 2 & 3 & \cellcolor{yellow}4 & 5 & 6 & 7 & \cellcolor{red}8 \\
 	\hline
+	variable & left & & & & middle & & & & right \\
+	\hline
 	\end{tabular}
 	\end{center}
 \begin{center}
 		\begin{small}
-			 assume that searchnum is 23
+			 assume searchnum is 23
 		\end{small}
 \end{center}
 
@@ -253,12 +255,15 @@ compare list[middle] with searchnum
 \item searchnum = list[middle] return middle 
 \item searchnum > list[middle] set left to middle+1
 \end{enumerate}
+%add Binary Search table -2021.01.28 kimsongsub-
 \begin{center}
-	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l || c | c | c | c | c | c | c | c | c |}
 		\hline
 		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & 20 & 23 & \cellcolor{red}29 \\
 		\hline
 		index & 0 & 1 & 2 & 3 & 4 & \cellcolor{green}5 & 6 & 7 & \cellcolor{red}8 \\
+		\hline
+		variable & & & & & & left & & & right \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -273,32 +278,37 @@ compare list[middle] with searchnum
 		\item recalculate middle and continue search
 		\item determining if there are any elements left to check
 	\end{itemize}
+%add Binary Search table -2021.01.28 kimsongsub-
 \begin{center}
-	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
+	\begin{tabular}{| l || c | c | c | c | c | c | c | c | c |}
 		\hline
 		value & 1 & 5 & 7 & 8 & 13 & \cellcolor{green}19 & \cellcolor{yellow}20 & 23 & \cellcolor{red}29 \\
 		\hline
 		index & 0 & 1 & 2 & 3 & 4 & \cellcolor{green}5 & \cellcolor{yellow}6 & 7 & \cellcolor{red}8 \\
+		\hline
+		variable & & & & & & left & middle & & right \\
 		\hline
 	\end{tabular}
 \end{center}
 	\begin{itemize}
 		\item handling the comparison (through a function or a macro)
 	\end{itemize}
-
+%add Binary Search table -2021.01.28 kimsongsub-
 	\begin{center}
-		\begin{tabular}{| l | l | l | l | l | l | l | l | l | l |}
+		\begin{tabular}{| l || c | c | c | c | c | c | c | c | c |}
 			\hline
 			value & 1 & 5 & 7 & 8 & 13 & 19 & 20 & \cellcolor{green}23 & \cellcolor{red}29 \\
 			\hline
 			index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & \cellcolor{green}7 & \cellcolor{red}8 \\
+			\hline
+			variable & & & & & & & & left & right \\
 			\hline
 		\end{tabular}
 	\end{center}
 \end{frame}
 \begin{frame}[t, fragile]
   \frametitle{Algorithm Specification: Binary Search}
-
+%add compare function and macro code -2021.01.28 kimsongsub-
 \begin{itemize}
 	\item\textbf {function:} compare(int x, int y)
 \end{itemize}
@@ -432,32 +442,26 @@ if look at the set {a,b,c,d}, the set of permutations are
   \frametitle{Recursive Algorithms: Permutations}
 \begin{codedef}
 void perm(char *list,int i,int n) {
-   int j,temp;
-   if(i==n) {
-      for(j=0;j<=n;j++)
-      printf(“%c”, list[j]);
-      printf(“     “);
-   }
-   else {
-      for(j=i;j<=n;j++) {
-         SWAP(list[i],list[j],temp);
-         perm(list,i+1,n);
-         SWAP(list[i],list[j],temp);
-       }
-   }  
+	int j,temp;
+	if(i==n) {
+		for(j=0;j<=n;j++)
+		printf(“%c”, list[j]);
+		printf(“     “);
+	}
+	else {
+		for(j=i;j<=n;j++) {
+			SWAP(list[i],list[j],temp);
+			perm(list,i+1,n);
+			SWAP(list[i],list[j],temp);
+		}
+	}  
 }  
+% form revised -2021.02.01 kimsongsub-
 \end{codedef}
-
-initial function call is
-\begin{itemize}
-\item perm(list,0,n-1);
-\end{itemize}
-
-recursively generates permutations
-\begin{itemize}
-\item until i=n
-\end{itemize}
-
+ 	initial function call is \textbf{perm(list,0,n-1);}
+ 	
+ 	recursively generates permutations \textbf{until i=n}
+ 	
 \end{frame}
 
 \section{Data Abstraction}
@@ -497,7 +501,7 @@ definition
 
 
 \end{frame}
-
+%separate page and add additional explanation -2021.01.29 kimsongsub-
 \begin{frame}[t]
   \frametitle{Data Abstraction}
 specification
@@ -507,16 +511,18 @@ specification
 \item type of its result
 \item description of what the function does
 \end{itemize}
+
 \end{frame}
 
 \begin{frame}[t]
 	\frametitle{Data Abstraction}
 	classify the function of data type 
 	\begin{itemize}
-		\item \textbf{creator/constructor}
-		\item transformers
-		\item observers/reporters
+		\item\textbf{creator/constructor}: These functions create a new instance of the designated type.
+		\item\textbf{transformers}: These functions also create an instance of the designated type, generally by using one or more other instance.
+		\item\textbf{observers/reporters}: These functions provide information about an instance of the type, but they do not change the instance.
 	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}[t, fragile]
@@ -598,29 +604,35 @@ variable space requirement
 
 \begin{frame}[t, fragile]
   \frametitle{Performance Analysis: Space Complexity}
-total space requirement S(P)
+total space requirement $S(Program)$
 \begin{codedef}
-  S(P) = c + Sp(I)
+  S(Program) = c + Sp(I)
 \end{codedef}
-
+% revised sentence -2021.02.01 kimsongsub-
+\textbf{$c$}:
 \begin{itemize}
-\item c : constant representing the fixed space requirements 
-\item Sp(I) : function of some characteristics of the instance I
+\item constant representing the fixed space requirements
 \end{itemize}
-
+\textbf{$S_{p}(I)$}:
+\begin{itemize}
+	\item function of some characteristics of the instance I
+	\item variable space requirements for program `$p$'
+\end{itemize}
 \end{frame}
 
 \begin{frame}[t, fragile]
   \frametitle{Performance Analysis: Space Complexity}
 \begin{codedef}
-float abc(float a, float b, float c) { 
+float calculation(float a, float b, float c) { 
    return a+b+b*c+(a+b-c)/(a+b)+4.00;
 }    
 \end{codedef}
+% add addition explanation -2021.01.30 kimsongsub-
 \begin{itemize}
 \item input - three simple variables
 \item ouput - a simple variable
-\item fixed space requirements only Sabc(I) = 0
+\item There is no variable space requirement, fixed space requirements only
+\item $S_{calculation}$(I) = 0
 \end{itemize}
 
 \end{frame}
@@ -638,8 +650,8 @@ float sum(float list[], int n) {
 }
 \end{codedef}
 \begin{itemize}
-\item output - a simple variable
 \item input - an array variable
+\item output - a simple variable
 \end{itemize}
 \end{frame}
 
@@ -649,13 +661,13 @@ float sum(float list[], int n) {
 \begin{itemize}
 \item entire array is copied into temporary storage before the
   function is executed
-\item Ssum(I) = Ssum(n) = n
+\item S$_{sum}$(I) = S$_{sum}$(n) = n
 \end{itemize}
 
 \textbf{C} pass arrays \textbf{by pointer}
 \begin{itemize}
 \item passing \textit{the address of the first element} of the array
-\item Ssum(n) = 0
+\item S$_{sum}$(n) = 0
 \end{itemize}
 
 \end{frame}
@@ -679,7 +691,8 @@ handled recursively
   \end{itemize}
 \item for each recursive call
 \end{itemize}
-
+%add additional explanation -2021.01.31 kimsongsub-
+Although Recursive version allows to express very clear, it has a greater overhead than its iterative counterpart
 \end{frame}
 
 \begin{frame}[t]
@@ -688,22 +701,22 @@ space needed for one recursive call
 \begin{itemize}
 \item number of bytes required for the two parameters and the return
   address
-\item 6 bytes needed on 80386
+% byte revised -2021.01.30 kimsongsub-
+\item 12 bytes needed on Intel-i7 (depends on the architecture)
   \begin{itemize}
-  \item 2 bytes for pointer list[]
-  \item 2 bytes for integer n
-  \item 2 bytes for return address
+  \item 4 bytes for pointer list[]
+  \item 4 bytes for integer n
+  \item 4 bytes for return address
   \end{itemize}
 
 \end{itemize}
 
 \textsf{assume} array has n=MAX\_SIZE numbers, 
 
-\textbf{total variable space Srsum(MAX\_SIZE)}
+\textbf{total variable space S$_{rsum}$(MAX\_SIZE)}
 \begin{itemize}
-\item Srsum(MAX\_SIZE) = 6 * MAX\_SIZE
+\item S$_{rsum}$(MAX\_SIZE) = 12 * MAX\_SIZE
 \end{itemize}
-
 \end{frame}
 
 \subsection{Time Complexity}
@@ -730,15 +743,15 @@ Iterative summing of a list of numbers
 \begin{codedef}
 float sum(float list[], int n) { 
    float tempsum=0;
-   count++; /* for assignment */ 
+   \textbf{count}++; /* for assignment */ 
    int i;
    for(i = 0; i < n; i++) { 
-      count++; /* for the for loop */ 
+      \textbf{count}++; /* for the for loop */ 
       tempsum += list[i];
-      count++; /*for assignment*/ 
+      \textbf{count}++; /*for assignment*/ 
    }
-   count++; /* last execution of for */ 
-   count++; /* for return */
+   \textbf{count}++; /* last execution of for */ 
+   \textbf{count}++; /* for return */
    return tempsum;
 }
 \end{codedef}
@@ -753,11 +766,18 @@ float sum(float list[], int n) {
    float tempsum=0;
    int i;
    for(i = 0; i < n; i++)
-      count+=2;
+      count += 2;
    count += 3;
    return tempsum;
 }
 \end{codedef}
+% add additional code -2021.01.30 kimsongsub-
+for one time execution \textbf{sum} function
+\begin{itemize}
+\item \texttt{count += 2} in for loop n time : $2n$
+\item \texttt{count += 3} : 3
+\item \textbf{total $2n+3$ steps}
+\end{itemize}
 \end{frame}
 
 
@@ -849,9 +869,12 @@ void add(int a[][M_SIZE],int b[][M_SIZE],int c[][M_SIZE],
    count++; 
 }
 \end{codedef}
-initially count = 0;
-
-total step count on termination : 2·rows·cols + 2·rows + 1;
+%add additional explanation -2021.01.31 kimsogsub-
+\begin{itemize}
+\item initially count = 0;
+\item total step count on termination : 2·rows·cols + 2·rows + 1;
+\item In this case, If the number of rows is more than the number of columns, swaping rows and columns will take fewer steps
+\end{itemize}
 \end{frame}
 
 
@@ -937,10 +960,12 @@ Matrix addition
     \item exist different algorithm for the same task
     \item which one is faster ?
     \end{itemize}
-
   \end{itemize}
-
 \end{enumerate}
+%add addional explanaion -2021.01.31 kimsongsub-
+\begin{itemize}
+	\item The ``worst case'' means case that has maxium number of steps 
+\end{itemize}
 
 \end{frame}
 
@@ -965,9 +990,10 @@ comparing time complexities
 Big ``OH''
 \begin{itemize}
 \item \textbf{def} f(n) = O(g(n))
+%add addional description and typo revised -2021.01.31 kimsongsub-
   \begin{itemize}
-  \item iff there exist positive constants c and n0 such that
-  \item f(n) $\geq$ c$\cdot$g(n) for all n, n $\geq$ n0
+  \item iff(if and only if) there exist positive constants c and n0 such that
+  \item f(n) $\leq$ c$\cdot$g(n) for all n, n $\geq$ n0(n0 is the break even point)
   \end{itemize}
 \end{itemize}
   \begin{figure}[h]
@@ -980,8 +1006,10 @@ Big ``OH''
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
  f(n) = 25$\cdot$n, g(n) = 1/3$\cdot$n$^2$ 
+ %add addional description -2021.01.31 kimsongsub-
 \begin{itemize}
 \item 25$\cdot$n = O(n$^2$/3) if let c = 1
+\item 'f of n' is 'big-oh of g of n'
 \end{itemize}
 
   \begin{figure}[h]
@@ -989,7 +1017,8 @@ Big ``OH''
     \includegraphics[width=0.5\textwidth]{figures/fig06_accel.png}
     \caption{Which one is faster?}
   \end{figure}
-$ |25\cdot n|   1\cdot|n^2/3| for all n \geq  75$
+%revised text -2021.01.31 kimsongsub-
+$ |25\cdot n|  \leq 1\cdot|n^2/3|$ for all n$ \geq  75$
 \end{frame}
 
 \begin{frame}[t]
@@ -1004,15 +1033,17 @@ f(n) = O(g(n))
   \end{itemize}
 
 \item g(n) should be as small a function
-  of n as one can come up with for which f(n)= O(g(n))
+  of n as one can come up with for which f(n) = O(g(n))
 \end{itemize}
+%add addional description -2021.01.31 kimsongsub-
+\textbf{f(n) = O(g(n)) $\neq$  O(g(n)) = f(n)}
 
-f(n) = O(g(n)) $\neq$  O(g(n)) = f(n)
+(It is meaningless to say that O(g(n)) = f(n) )
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
-\textbf{theorem)} if $f(n) = a_{m}n^m + ... + a_1n + a_0$, then $f(n) = O(nm)$
+\textbf{theorem)} if $f(n) = a_{m}n^m + ... + a_1n + a_0$, then $f(n) = O(n^m)$
 
 \textbf{proof)}
 \begin{align*}
@@ -1022,26 +1053,32 @@ f(n) &\leq  |a_k|·n^k + |a_{k-1}|·n^{k-1} +...+ |a_1|\cdot n + |a_0| \\
 & = c\cdot n^k (c = |a_k|+|a_{k-1}|+...+|a_1|+|a_0|) = O(n^k)
 \end{align*}
 \end{frame}
-
+%add page and graph -2021.01.31 kimsongsub-
+\begin{frame}[t]
+	\frametitle{Performance Analysis: Asymptotic Notation}
+	\textbf{Omega}
+	\textbf{def)} f(n) = $\Omega$ (g(n))
+	\begin{itemize}
+		\item iff there exist positive constants c and n0 such that f(n)
+		c$\cdot$ g(n) for all n, n$\geq$ $n^0$
+	\end{itemize}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{figures/fig05_omega.png}
+		\caption{Which one is faster?}
+	\end{figure}
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
-\textbf{Omega}
-\textbf{def)} f(n) = $\Omega$ (g(n))
-\begin{itemize}
-\item iff there exist positive constants c and n0 such that f(n)
-  c$\cdot$ g(n) for all n, n$\geq$ $n^0$
-\end{itemize}
-
-
+  \textbf{Omega}
 \begin{itemize}
 \item g(n) is a lower bound on the value of f(n) for all n, n $\geq$ n0
 \item should be as large a function of n as possible
 \end{itemize}
-
 \textbf{theorem)} if $f(n) = a_mn^m + ... + a_1n + a_0$ and $am > 0$, then $f(n) = \Omega(n^m)$
 \end{frame}
-
+%add page and graph -2021.01.31 kimsongsub-
 \begin{frame}[t]
   \frametitle{Performance Analysis: Asymptotic Notation}
 \textbf{  Theta}
@@ -1050,12 +1087,22 @@ f(n) &\leq  |a_k|·n^k + |a_{k-1}|·n^{k-1} +...+ |a_1|\cdot n + |a_0| \\
 \item iff there exist positive constants $c^1$, $c^2$, and $n^0$ such that
 \item $c^1\cdot g(n) \leq f(n) \leq c^2\cdot g(n)$ for all n, $n\geq n^0$
 \end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/fig05_theta.png}
+	\caption{Which one is faster?}
+\end{figure}
 
-\begin{itemize}
-\item  more precise than both the “big oh” and omega notations
-\item g(n) is both an upper and lower bound on f(n)
-\end{itemize}
+\end{frame}
 
+\begin{frame}[t]
+	\frametitle{Performance Analysis: Asymptotic Notation}
+	\textbf{  Theta}	
+	\begin{itemize}
+		\item  more precise than both the “big oh” and omega notations
+		\item g(n) is both an upper and lower bound on f(n)
+	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}[t]
