@@ -604,16 +604,20 @@ variable space requirement
 
 \begin{frame}[t, fragile]
   \frametitle{Performance Analysis: Space Complexity}
-total space requirement S(P)
+total space requirement $S(Program)$
 \begin{codedef}
-  S(P) = c + Sp(I)
+  S(Program) = c + Sp(I)
 \end{codedef}
-
+% revised sentence -2021.02.01 kimsongsub-
+\textbf{$c$}:
 \begin{itemize}
-\item c : constant representing the fixed space requirements 
-\item Sp(I) : function of some characteristics of the instance I
+\item constant representing the fixed space requirements
 \end{itemize}
-
+\textbf{$S_{p}(I)$}:
+\begin{itemize}
+	\item function of some characteristics of the instance I
+	\item variable space requirements for program `$p$'
+\end{itemize}
 \end{frame}
 
 \begin{frame}[t, fragile]
@@ -657,13 +661,13 @@ float sum(float list[], int n) {
 \begin{itemize}
 \item entire array is copied into temporary storage before the
   function is executed
-\item Ssum(I) = Ssum(n) = n
+\item S$_{sum}$(I) = S$_{sum}$(n) = n
 \end{itemize}
 
 \textbf{C} pass arrays \textbf{by pointer}
 \begin{itemize}
 \item passing \textit{the address of the first element} of the array
-\item Ssum(n) = 0
+\item S$_{sum}$(n) = 0
 \end{itemize}
 
 \end{frame}
@@ -709,11 +713,10 @@ space needed for one recursive call
 
 \textsf{assume} array has n=MAX\_SIZE numbers, 
 
-\textbf{total variable space Srsum(MAX\_SIZE)}
+\textbf{total variable space S$_{rsum}$(MAX\_SIZE)}
 \begin{itemize}
-\item Srsum(MAX\_SIZE) = 12 * MAX\_SIZE
+\item S$_{rsum}$(MAX\_SIZE) = 12 * MAX\_SIZE
 \end{itemize}
-
 \end{frame}
 
 \subsection{Time Complexity}
