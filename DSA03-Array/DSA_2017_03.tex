@@ -62,7 +62,7 @@ operations
 A one-dimensional array in C is declared implicitly by appending brackets to the name of a variable
 
 \begin{codedef}
-  int list[5], *plist[5];
+  int list[5], int *plist[5];
 \end{codedef}
 
 arrays start at index 0 in C  
@@ -79,7 +79,7 @@ int list[5];
 \begin{itemize}
 \item allocates five consecutive memory locations
 \item each memory location is large enough to hold a single integer
-\item base address address of the first element
+\item base address is address of the first element
 \end{itemize}
 
 \begin{codedefnb}
@@ -139,19 +139,20 @@ consider the way C treats an array when it is a parameter to a function
 
 \begin{frame}[t, fragile]
   \frametitle{Array: Example 2.1}
+%typo, indent revised -2021.02.03 kimsongsub-
 \begin{codedef}
 #define MAX_SIZE 100
 float sum(float [], int); 
 float input[MAX_SIZE], answer; 
 int i;
-
 void main(void) {
-    for(i = 0; i < MAX_SIZE; i++) input[i] = i;
-        answer = sum(input, MAX_SIZE);
+    for(i = 0; i < MAX_SIZE; i++) 
+    	input[i] = i;
+    answer = sum(input, MAX_SIZE);
     printf{"The sum is: %f\n", answer);
 }     
 
-float sum(float list[], inst n) {
+float sum(float list[], int n) {
     int i;
     float tempsum = 0;
     for(i = 0; i < n; i++)
@@ -177,15 +178,15 @@ Pointer Variable stores address
 \end{frame}
 
 
-
+%typo, revised -2021.02.03 kimsongsub-
 \begin{frame}[t, fragile]
   \frametitle{Recap: On Pointer}
-Do Not!
+  Do Not!
   \begin{itemize}
   \item pointer variable is not referencing an address, so cannot store a value
 \begin{codedef}
 int *ptr;
-* ptr = 100;
+*ptr = 100;
 \end{codedef}
 \item the data type must equal
 \begin{codedef}
