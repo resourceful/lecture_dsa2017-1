@@ -1,7 +1,7 @@
 % Author: Seongjin Lee 
 % Gyeongsang National University, Korea 
 % 
-% 2017-03-06
+% 2021-02-14
 %
 
 \documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
@@ -25,7 +25,7 @@
 \subtitle{Class 5}
 \author[SJL]{Seongjin Lee}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2017-03-06} 
+\date{2021-02-14} 
 
 \begin{document}
 
@@ -91,7 +91,8 @@ Stack is used by a program at run-time to process function calls
 
 Activation record (stack frame) initially contains only 
 \begin{itemize}
-\item a pointer to to the previous stack frame
+%typo revised -2021.02.11 kimsongsub-
+\item a pointer to the previous stack frame
 \item a return address
 \end{itemize}
 If this invokes another function
@@ -239,20 +240,21 @@ element pop(int *ptop){
 
 Operation
 {\footnotesize  \begin{centering}
+%typo revised delete D -> delete A -2021.02.12 kimsongsub-
 \begin{tabular}{!{\onslide<2->}c<{\onslide<3->}c<{\onslide<4->}c<{\onslide<5->}c<{\onslide<6->}c}
-insert A & $\rightarrow$ insert B &  $\rightarrow$ insert C &  $\rightarrow$ insert D &  $\rightarrow$ delete D  \\
+insert A & $\rightarrow$ insert B &  $\rightarrow$ insert C &  $\rightarrow$ insert D &  $\rightarrow$ delete A  \\
     \end{tabular}
   \end{centering}}
 
 {\onslide<1-> Queue state}
 
 {\footnotesize  \begin{centering}
+%front arrow location revised -2021.02.12 kimsongsub-
 \begin{tabular}{!{\onslide<2->} c<{\onslide<2->}c<{\onslide<3->}c<{\onslide<3->}c<{\onslide<4->}c<{\onslide<4->}c<{\onslide<5->}c<{\onslide<5->}c<{\onslide<6->}c<{\onslide<6->}c}
-       &                   &   &  &   &  & D & $\leftarrow$ rear &  &  \\
-       &                   &   &  & C & $\leftarrow$ rear & C &  & D & $\leftarrow$ rear \\
-       &                   & B & $\leftarrow$ rear & B &  & B &  & C &  \\
-     A & $\leftarrow$ rear & A & $\leftarrow$ front & A & $\leftarrow$ front & A & $\leftarrow$ front & B & $\leftarrow$ front \\
-       & $\leftarrow$ front & & &  & &  & &  & \\
+       &                   &   &  &   &  & D & $\leftarrow$ rear & D & $\leftarrow$ rear \\
+       &                   &   &  & C & $\leftarrow$ rear & C &  & C & \\
+       &                   & B & $\leftarrow$ rear & B &  & B &  & B & $\leftarrow$ front\\
+     A & $\leftarrow$ front, rear & A & $\leftarrow$ front & A & $\leftarrow$ front & A & $\leftarrow$ front &  & \\
     \end{tabular}
   \end{centering}}
 \end{frame}
