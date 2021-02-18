@@ -437,7 +437,7 @@ if look at the set {a,b,c,d}, the set of permutations are
 
 ``\textbf{followed by all permutations}'' : clue to the recursive solution
 \end{frame}
-
+% form revised -2021.02.01 kimsongsub-
 \begin{frame}[t, fragile]
   \frametitle{Recursive Algorithms: Permutations}
 \begin{codedef}
@@ -456,7 +456,6 @@ void perm(char *list,int i,int n) {
 		}
 	}  
 }  
-% form revised -2021.02.01 kimsongsub-
 \end{codedef}
  	initial function call is \textbf{perm(list,0,n-1);}
  	
@@ -869,7 +868,7 @@ void add(int a[][M_SIZE],int b[][M_SIZE],int c[][M_SIZE],
    count++; 
 }
 \end{codedef}
-%add additional explanation -2021.01.31 kimsogsub-
+%add additional explanation -2021.01.31 kimsongsub-
 \begin{itemize}
 \item initially count = 0;
 \item total step count on termination : 2·rows·cols + 2·rows + 1;
