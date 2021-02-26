@@ -1,11 +1,11 @@
 % Author: Seongjin Lee 
 % Gyeongsang National University, Korea 
 % 
-% 2017-03-06
+% 2021-02-14
 %
 
 \documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
-\usepackage{kotex}
+\usepackage{kotex, multicol}
 %\usetheme{sthlm}
 \usepackage{../style/beamerthemesthlm}
 \hypersetup{pdfauthor={Seongjin Lee (insight@gnu.ac.kr)},
@@ -25,7 +25,7 @@
 \subtitle{Class 5}
 \author[SJL]{Seongjin Lee}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2017-03-06} 
+\date{2021-02-14} 
 
 \begin{document}
 
@@ -91,11 +91,12 @@ Stack is used by a program at run-time to process function calls
 
 Activation record (stack frame) initially contains only 
 \begin{itemize}
-\item a pointer to to the previous stack frame
+%typo revised -2021.02.11 kimsongsub-
+\item a pointer to the previous stack frame
 \item a return address
 \end{itemize}
 If this invokes another function
-\begin{itemize}
+\begin{itemize}  
 \item local variables
 \item parameters of the invoking function
 \end{itemize}
@@ -119,6 +120,21 @@ System Stack after function call
       \includegraphics[width=0.4\textwidth]{figures/fig03_stack2.png} \\
     \end{tabular}
   \end{center}
+
+\end{frame}
+%add page -2021.02.13 kimsongsub-
+\begin{frame}[t]
+	\frametitle{Stack Abstract Data Type: System Stack}
+	Frequent function calls may occupy all of the stack memory and may cause a stack overflow.
+	\begin{center}
+			\includegraphics[width=0.4\textwidth]{figures/stackoverflow.png}
+	\end{center}
+%add source - 8p KSS-
+\begin{tiny}
+	\begin{flushright}
+		The source of the picture is the ``Stack Overflow'' company's logo.
+	\end{flushright}
+\end{tiny}
 
 \end{frame}
 
@@ -206,13 +222,14 @@ element pop(int *ptop){
 
 \end{frame}
 
-
+%add example -2021.02.13 kimsongsub-
 \begin{frame}[t]
   \frametitle{Stack Abstract Data Type: Application of Stack}
   \begin{itemize}
   \item Procedure calls/returns
   \item Syntactic analyzer
-  \item converting recursive procedures to non-recursive procedures
+  \item Converting non-recursive procedures to recursive procedures
+  \item Save return address when calling subfunction
   \end{itemize}
 \end{frame}
 
@@ -239,20 +256,21 @@ element pop(int *ptop){
 
 Operation
 {\footnotesize  \begin{centering}
+%typo revised delete D -> delete A -2021.02.12 kimsongsub-
 \begin{tabular}{!{\onslide<2->}c<{\onslide<3->}c<{\onslide<4->}c<{\onslide<5->}c<{\onslide<6->}c}
-insert A & $\rightarrow$ insert B &  $\rightarrow$ insert C &  $\rightarrow$ insert D &  $\rightarrow$ delete D  \\
+insert A & $\rightarrow$ insert B &  $\rightarrow$ insert C &  $\rightarrow$ insert D &  $\rightarrow$ delete A  \\
     \end{tabular}
   \end{centering}}
 
 {\onslide<1-> Queue state}
 
 {\footnotesize  \begin{centering}
+%front arrow location revised -2021.02.12 kimsongsub-
 \begin{tabular}{!{\onslide<2->} c<{\onslide<2->}c<{\onslide<3->}c<{\onslide<3->}c<{\onslide<4->}c<{\onslide<4->}c<{\onslide<5->}c<{\onslide<5->}c<{\onslide<6->}c<{\onslide<6->}c}
-       &                   &   &  &   &  & D & $\leftarrow$ rear &  &  \\
-       &                   &   &  & C & $\leftarrow$ rear & C &  & D & $\leftarrow$ rear \\
-       &                   & B & $\leftarrow$ rear & B &  & B &  & C &  \\
-     A & $\leftarrow$ rear & A & $\leftarrow$ front & A & $\leftarrow$ front & A & $\leftarrow$ front & B & $\leftarrow$ front \\
-       & $\leftarrow$ front & & &  & &  & &  & \\
+       &                   &   &  &   &  & D & $\leftarrow$ rear & D & $\leftarrow$ rear \\
+       &                   &   &  & C & $\leftarrow$ rear & C &  & C & \\
+       &                   & B & $\leftarrow$ rear & B &  & B &  & B & $\leftarrow$ front\\
+     A & $\leftarrow$ front, rear & A & $\leftarrow$ front & A & $\leftarrow$ front & A & $\leftarrow$ front &  & \\
     \end{tabular}
   \end{centering}}
 \end{frame}
@@ -288,7 +306,15 @@ return (front == rear)
 return rear == (MAX_QUEUE_SIZE-1)
 \end{codedef}
 
+\end{frame}
 
+%add example -2021.02.13 kimsongsub-
+\begin{frame}[t]
+	\frametitle{Queue Abstract Data Type: Application of Queue}
+	\begin{itemize}
+		\item Buffer
+		\item Job scheduling
+	\end{itemize}
 \end{frame}
 
 \begin{frame}[t, fragile]
@@ -372,6 +398,30 @@ empty and nonempty circular queues
   \frametitle{Circular Queues}
 full circular queues
 \includegraphics[width=0.9\textwidth]{figures/fig05_fcq.png}
+\end{frame}
+
+%add quiz -2021.02.13 kimsongsub-
+\begin{frame}[t]
+	\frametitle{Circular Queues: Quiz}
+What is the result ?
+	\includegraphics[width=0.9\textwidth]{figures/fig05_quiz1.png}
+\end{frame}
+%add quiz result -27p KSS-
+\begin{frame}[t]
+	\frametitle{Circular Queues: Quiz Result}
+	\includegraphics[width=0.9\textwidth]{figures/fig05_quiz2.png}
+\end{frame}
+
+%add quiz -2021.02.13 kimsongsub-
+\begin{frame}[t, fragile]
+	\frametitle{Circular Queues: Thinking}
+	Why do not fill data in the empty space in front?
+
+\begin{itemize}
+	\item If all the data is filled in such a state, front and rear become the same, so it is impossible to distinguish whether it is empty or full.
+	\item So, before all queue is filled, the size of the queue must be expanded.
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}[t, fragile]
@@ -689,7 +739,6 @@ Evaluation of postfix expression
   \end{center}
 
 \end{frame}
-
 
 \begin{frame}[t]
   \frametitle{Evaluating Postfix Expression}

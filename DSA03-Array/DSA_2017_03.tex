@@ -1,7 +1,7 @@
 % Author: Seongjin Lee 
 % Gyeongsang National University, Korea 
 % 
-% 2017-03-06
+% 2021-02-07
 %
 
 \documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
@@ -25,7 +25,8 @@
 \subtitle{Class 3}
 \author[SJL]{Seongjin Lee}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2017-03-06} 
+%date update -2021.02.02 kimsongsub-
+\date{2021-02-07} 
 
 \begin{document}
 
@@ -61,7 +62,7 @@ operations
 A one-dimensional array in C is declared implicitly by appending brackets to the name of a variable
 
 \begin{codedef}
-  int list[5], *plist[5];
+  int list[5], int *plist[5];
 \end{codedef}
 
 arrays start at index 0 in C  
@@ -78,13 +79,22 @@ int list[5];
 \begin{itemize}
 \item allocates five consecutive memory locations
 \item each memory location is large enough to hold a single integer
-\item base address address of the first element
+\item base address is address of the first element
 \end{itemize}
 
 \begin{codedefnb}
 list = &list[0]
 \end{codedefnb}
-
+%add table -2021.02.03 kimsongsub-
+\begin{center}
+	\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		\texttt{list[0]} & \texttt{list[1]} & \texttt{list[2]} & \texttt{list[3]} & \texttt{list[4]} \\
+		\hline
+		 trash value & trash value & trash value & trash value & trash value \\
+		\hline
+	\end{tabular}
+\end{center}
 \end{frame}
 
 
@@ -99,6 +109,10 @@ list = &list[0]
 \texttt{\&list[3]} & $\alpha + 3 \cdot$ \texttt{sizeof(int)}\\
 \texttt{\&list[4]} & $\alpha + 4 \cdot$ \texttt{sizeof(int)}\\
   \end{tabular}
+%add additional explanation -2021.02.06 kimsongsub-
+\begin{itemize}
+	\item Because different architectures have different int sizes, we have to use ``sizeof''
+\end{itemize}
 
 \bigskip
 \texttt{\&list[i]} in a C programs
@@ -119,10 +133,30 @@ int *list2[5];       // list2 : pointer constant to an int,
                      // and five memory locations for holding 
                      // integers are reserved
 \end{codedef}
-
+%add example code -2021.02.06 kimsongsub-
+\begin{codedef}
+int list[] = { 0,1,2,3,4,5 };
+	
+printf("%d\n", list[3]);    // 3
+printf("%d\n", *(&list[0]+3));    // 3
+printf("%d\n", *(list+3));    // 3 ...All is the same expression
+\end{codedef}
 \texttt{(list2+i)} equals \texttt{\&list2[i]}, and \texttt{*(list2+i)} equals \texttt{list2[i]}
 \begin{itemize}
 \item regardless of the type of the array list2
+\end{itemize}
+\end{frame}
+%add Page, example -2021.02.07 kimsongsub-
+\begin{frame}[t, fragile]
+	\frametitle{Array}
+How about this ?
+\begin{codedef}
+printf("%d\n", ++list[0]);
+\end{codedef}
+
+\begin{itemize}
+	\item \texttt{++list[0] -> list[0]+1}
+	\item the result is same as \texttt{list[1]}
 \end{itemize}
 \end{frame}
 
@@ -138,19 +172,20 @@ consider the way C treats an array when it is a parameter to a function
 
 \begin{frame}[t, fragile]
   \frametitle{Array: Example 2.1}
+%typo, indent revised -2021.02.03 kimsongsub-
 \begin{codedef}
 #define MAX_SIZE 100
 float sum(float [], int); 
 float input[MAX_SIZE], answer; 
 int i;
-
 void main(void) {
-    for(i = 0; i < MAX_SIZE; i++) input[i] = i;
-        answer = sum(input, MAX_SIZE);
+    for(i = 0; i < MAX_SIZE; i++) 
+    	input[i] = i;
+    answer = sum(input, MAX_SIZE);
     printf{"The sum is: %f\n", answer);
 }     
 
-float sum(float list[], inst n) {
+float sum(float list[], int n) {
     int i;
     float tempsum = 0;
     for(i = 0; i < n; i++)
@@ -159,9 +194,6 @@ float sum(float list[], inst n) {
 }
 \end{codedef}
 \end{frame}
-
-
-
 
 
 
@@ -176,16 +208,25 @@ Pointer Variable stores address
 \end{frame}
 
 
-
+%typo, revised -2021.02.03 kimsongsub-
 \begin{frame}[t, fragile]
   \frametitle{Recap: On Pointer}
-Do Not!
+  Do Not!
   \begin{itemize}
   \item pointer variable is not referencing an address, so cannot store a value
 \begin{codedef}
 int *ptr;
-* ptr = 100;
+*ptr = 100;
 \end{codedef}
+%add addional explanation -2021.02.07 kimsongsub-
+It is better to handle NULL for the pointer that do not refer to address right away
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t, fragile]
+\frametitle{Recap: On Pointer}
+Do Not!
+\begin{itemize}
 \item the data type must equal
 \begin{codedef}
 double Pi = 3.14;
@@ -198,7 +239,6 @@ int num;
 \end{codedef}
 \end{itemize}
 \end{frame}
-
 
 \begin{frame}[t, fragile]
   \frametitle{Recap: On Pointer}
@@ -216,14 +256,25 @@ See the example
 #include <stdlib.h>
 
 void *malloc(size_t size); // allocates size bytes of memory and returns a pointer to the allocated memory
+
 void *free(void *ptr); // frees allocation that were created via the preceding allocation function
-void *calloc(size_t count, size_t size); // contiguously allocates enough sapce for count objects that are size bytes of memory each and returns a pointer to the allocated memory. The allocated memory is filled with bytes of value zero.
+
+void *calloc(size_t count, size_t size); // contiguously allocates enough space for count objects that are size bytes of memory each and returns a pointer to the allocated memory. The allocated memory is filled with bytes of value zero.
+
 void *realloc(void *ptr, size_t size); // change the size of the allocation pointed to by ptr to size, and returns ptr
 \end{codedef}
 
 \end{frame}
+%add free explanation page -2021.02.07 kimsongsub-
+\begin{frame}
+	\frametitle{Recap: On Pointer}
+if the memory is not freed after being allocated, a memory leak will occur
 
-
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.33\textwidth]{figures/fig03_memory.png}
+\end{figure}
+\end{frame}
 
 
 \begin{frame}[t, fragile]
@@ -316,7 +367,8 @@ creating a variable
 
 \begin{frame}[t, fragile]
   \frametitle{Structures and Unions: struct}
-use of the . as the structure member operator
+% add additional descript -2021.02.05 kimsongsub-
+use of the .(period) as the structure member operator
 
 \begin{codedef}
 strcpy(person.name, "james");
@@ -440,7 +492,9 @@ typedef struct human_being {
 \begin{frame}[t, fragile]
   \frametitle{Structures and Unions: Embedding Structure}
 Ex. A person boar on Feb 14 1992
+% add declare person1 -2021.02.05 kimsongsub-
 \begin{codedef}
+human_begin person1;
 person1.dob.month = 2;
 person1.dob.day = 14;
 person1.dob.year = 1992;
@@ -494,6 +548,55 @@ and
 person2.sex_info.sex = female; 
 person2.sex_info.u.children = 4;
 \end{codedef}
+\end{frame}
+% add structures and unions quiz page-2021.02.07 kimsongsub-
+\begin{frame}[t, fragile]
+	\frametitle{Structures and Unions: {\large Differences between structure and union}}
+What are differences between structure and union ? 
+\begin{itemize}
+	\item Structure
+\end{itemize}
+\begin{codedef}
+typedef struct example{
+	int x, y;
+	double d;
+}struct_example;
+
+struct_example se;
+
+printf("%d\n", sizeof(se));
+printf("%p %p %p\n", &se.x, &se.y, &se.d);
+\end{codedef}
+
+>> 16
+\newline>> 0x7ff0 0x7ff4 0x7ff8
+\begin{itemize}
+	\item 16byte size, different address
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t, fragile]
+	\frametitle{Structures and Unions: {\large Differences between structure and union}}
+\begin{itemize}
+	\item Union
+\end{itemize}
+\begin{codedef}
+	typedef union example{
+		int x, y;
+		double d;
+	}union_example;
+
+	union_example ue;
+	
+	printf("%d\n", sizeof(ue));
+	printf("%p %p %p\n", &ue.x, &ue.y, &ue.d);
+\end{codedef}
+
+>> 8
+\newline>> 0x7ff0 0x7ff0 0x7ff0 
+\begin{itemize}
+	\item 8byte size, same address
+\end{itemize}
 \end{frame}
 
 \begin{frame}[t, fragile]
