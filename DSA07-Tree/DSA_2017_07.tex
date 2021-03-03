@@ -5,7 +5,7 @@
 %
 
 \documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
-\usepackage{kotex}
+\usepackage{kotex, subfig}
 %\usetheme{sthlm}
 \usepackage{../style/beamerthemesthlm}
 \hypersetup{pdfauthor={Seongjin Lee (insight@gnu.ac.kr)},
@@ -142,7 +142,7 @@ Two types of representation of tree
   \end{enumerate}
 \end{frame}
 
-
+%seperate page, add list representation -22,23p KSS-
 \begin{frame}[t]
   \frametitle{List Representation}
 Two types of nodes
@@ -153,6 +153,15 @@ Two types of nodes
 
 The information in the root node comes first and it is followed by a list of the subtrees of that node
 \includegraphics[height=0.6\textheight]{figures/fig03_list_rep.png}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{List Representation}
+	This figure shows the resulting memory representation for the tree of ``(A(B(E(K,L),F)C(G),D(H(M),IJ)))''
+	
+	\includegraphics[height=0.6\textheight]{figures/fig03_list_rep_2.png}
+	
 \end{frame}
 
 
@@ -287,6 +296,7 @@ There are two methods to represent the binary tree
     \item Parent (i) is at $\lfloor i/2 \rfloor$ if $i \neq 1$, if $i = 1$, no parent
     \item Left\_child (i) is at $2 \cdot i$ if $2i \leq n$
     \item Right\_child (i) is at $2 \cdot i + 1$ if $2 \cdot i+1 \leq n$
+%add number explanation -33p KSS-
     \end{enumerate}
         \includegraphics[height=0.5\textheight]{figures/fig07_skewed_array.png}
   \end{itemize}
@@ -579,7 +589,30 @@ Every node of the tree is placed on and removed from the stack exactly once
 \end{itemize}
 
 \end{frame}
+%add quiz -51,52p KSS- 
+\begin{frame}[t]
+	\frametitle{Inorder Traversal : Quiz}
+	\begin{itemize}
+		\item When searching for Inorder Traversal, what is the 6th search ?
+	\end{itemize}
+	\includegraphics[height=0.8\textheight]{./figures/fig_quiz.png}
+\end{frame}
 
+\begin{frame}[t]
+	\frametitle{Inorder Traversal : Quiz}
+	\begin{itemize}
+		\item Consider question and choice the answer
+	\end{itemize}
+	\includegraphics[height=0.8\textheight]{./figures/fig_example.png}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Inorder Traversal : Answer}
+	\begin{itemize}
+		\item The correct answer is 4th figure
+	\end{itemize}
+	\includegraphics[height=0.8\textheight]{./figures/fig_answer.png}
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Level Order Traversal}
@@ -730,7 +763,29 @@ void init(HeapType *h){
   \end{description}
 Ex. Job scheduling of OS
 \end{frame}
-
+%add comparison table -63p KSS-
+\begin{frame}[t]
+	\frametitle{Comparison : Deletion}
+	\begin{itemize}
+		\item Data structure deletion comparison
+	\end{itemize}
+	\begin{table}
+		\centering
+		\label{t2}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{c|c}
+			\noalign{\smallskip}\noalign{\smallskip}\hline
+			\textbf{Data structure} & \textbf{Elements to be deleted}\\
+			\hline\hline
+			Stack & Latest entered data \\
+			\hline
+			Queue & First entered data  \\
+			\hline
+			Priority Queue  & Highest priority data \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Priority Queues}
@@ -818,7 +873,44 @@ void insert_max_heap(HeapType *h, element item){
 }
   \end{lstlisting}
 \end{frame}
+%add Min Heap Quiz -70p KSS-
+\begin{frame}[t, fragile]
+	\frametitle{Insertion into a min heap}
+	
+	Consider an array of min heap and draw the corresponding heap tree !
+	
+	\begin{table}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+			\hline
+			2 & 9 & 18 & 6 & 15 & 7 & 3 & 14
+			\\\hline
+		\end{tabular}
+	\caption{Heap array}
+	\end{table}
+	
+\end{frame}
 
+\begin{frame}[t]
+	\frametitle{Insertion into a min heap}
+	\begin{tabular}{p{0.44\textwidth} p{0.44\textwidth}}
+		Insertion : 2, 9, 18, 6
+		
+		\includegraphics[height=0.3\textheight]{./figures/fig_min_heap1.png}
+		&    
+		Insertion : 15, 7
+		
+		\includegraphics[height=0.3\textheight]{./figures/fig_min_heap2.png}
+		\\
+		Insertion : 3
+		
+		\includegraphics[height=0.3\textheight]{./figures/fig_min_heap3.png}
+		&
+		Insertion : 14
+		
+		\includegraphics[height=0.3\textheight]{./figures/fig_min_heap4.png}
+		\\
+	\end{tabular}
+\end{frame}
 
 
 %typo revised -72p KSS-

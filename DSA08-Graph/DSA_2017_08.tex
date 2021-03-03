@@ -121,6 +121,10 @@
       \Edge(U)(V)
     \end{tikzpicture}
   \end{center}
+%add sum up -6p KSS-
+\begin{itemize}
+	\item $(u, v)$ = $(v, u)$ \textbf{but} $<u, v>$ $\ne$ $<v, u>$
+\end{itemize}
 \end{frame}
 
 
@@ -328,7 +332,30 @@ N = 1 & N = 2 & N = 3 & N = 4
   \end{tabular}
 \end{center}
 \end{frame}
+%add quiz -13p KSS-
+\begin{frame}[t]
+	\frametitle{Number of Edges in Undirected Graph}
+	\begin{itemize}
+		\item What is number of edges in this graph ?
+	\end{itemize}
+\begin{center}
+	\begin{tikzpicture}
+	\GraphInit[vstyle=Normal]\SetGraphUnit{1}
+	\SetVertexNoLabel
+	\begin{scope}[rotate=45]
+	\Vertices{circle}{1, 2, 3, 4}
+	\end{scope}
+	
+	\Edges(1, 2, 3, 4, 1)
+	\Edges(1, 3)
+	\Edges(2, 4)
+	\end{tikzpicture}
+	\\
+	N = 4 
+\end{center}
 
+Number of edges is 6
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Number of Edges in Undirected Graph}

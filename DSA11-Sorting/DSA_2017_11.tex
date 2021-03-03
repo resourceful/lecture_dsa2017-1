@@ -75,7 +75,7 @@ repeat until no swaps
             swap them
   \end{lstlisting}
 \end{frame}
-
+% add horizontal line -KSS-
 \begin{frame}[t]
   \frametitle{Bubble sort: example}
   \begin{tabular}{p{1.5cm}|| c | c | c | c | c | c | c |p{4cm}}
@@ -90,8 +90,8 @@ $1^{st}$ run & 4  & 8  & 3  & 15 & 9 & \color{red}20 & \color{red}50 & cmp 6 and
 $2^{nd}$ run & 4  & 8  & 3  & 15 & 9 & 20 & \color{blue}50 & cmp 1 and 2, no swap  \\ \hline
 $2^{nd}$ run & 4  & \color{red}3  & \color{red}8  & 15 & 9 & 20 & \color{blue}50 & cmp 2 and 3,  swap  \\ \hline
 $2^{nd}$ run & 4  & 3  & 8  & 15 & 9 & 20 & \color{blue}50 & cmp 3 and 4, no swap  \\ \hline
-$2^{nd}$ run & 4  & 3  & 8  & 15 & 9 & 20 & \color{blue}50 & cmp 4 and 5, no swap  \\ \hline
-$2^{nd}$ run & 4  & 3  & 8  & \color{red}9  & \color{red}15 & \color{blue}20 & \color{blue}50 & cmp 5 and 6, swap  \\ \hline
+$2^{nd}$ run & 4  & 3  & 8  & \color{red}9  & \color{red}15 & 20 & \color{blue}50 & cmp 4 and 5, swap  \\ \hline
+$2^{nd}$ run & 4  & 3  & 8  & 9  & 15 & \color{blue}20 & \color{blue}50 & cmp 5 and 6, no swap  \\ \hline
 $3^{rd}$ run & \color{red}3  & \color{red}4  & 8  & 9  & \color{blue}15 & \color{blue}20 & \color{blue}50 & 1, 2 swap  \\ \hline
 $4^{th}$ run & 3  & 4  & 8  & \color{blue}9  & \color{blue}15 & \color{blue}20 & \color{blue}50 & no swap  \\ \hline
 $5^{th}$ run & 3  & 4  & \color{blue}8  & \color{blue}9  & \color{blue}15 & \color{blue}20 & \color{blue}50 & no swap  \\ \hline
@@ -110,10 +110,10 @@ $6^{th}$ run & 3  & \color{blue}4  & \color{blue}8  & \color{blue}9  & \color{bl
 
 \begin{frame}[t]
   \frametitle{Bubble sort: Time complexity}
-
+%add horizontal line, adjust font size -12p KSS-
 \begin{center}
-  \begin{tabular}{c p{3cm}}
-    loop & number of comparison \\ \hline
+  \begin{tabular}{c | p{3cm}}
+    loop & \scriptsize{number of comparison} \\ \hline
     1    & n-1 \\
     2    & n-2 \\
     3    & n-3 \\
@@ -123,7 +123,11 @@ $6^{th}$ run & 3  & \color{blue}4  & \color{blue}8  & \color{blue}9  & \color{bl
     n-1  &  1 \\
   \end{tabular}
 \end{center}
-Time complexity: Worst case $O(n^2)$
+%add youtube link -12p KSS-
+Time complexity: $O(n^2)$
+  
+   \vspace{10mm}
+\url{https://www.youtube.com/watch?v=lyZQPjUT5B4&t=50}
 \end{frame}
 
 
@@ -142,7 +146,8 @@ for i from 0 to n-1
 
 \begin{frame}[t, fragile]
   \frametitle{Selection sort}
-  \begin{tabular}{p{1.5cm}| c | c | c | c | c | c | c |p{4cm}}
+  % add horizontal line -KSS-
+  \begin{tabular}{p{1.5cm}|| c | c | c | c | c | c | c |p{4cm}}
 initial & 15 & 4  & 8  & 3  & 50 & 9 & 20 & unsorted array \\ \hline
 $1^{st}$ run & \color{red}3  & 4 & 8  & \color{red}15  & 50 & 9 & 20 & midx 15, min 3, swap \pause\\ [0.8em] \hline
 $2^{nd}$ run & \color{blue}3  & \color{red}4 & 8  & 15  & 50 & 9 & 20 & midx 4, min 4 \pause\\  [0.8em] \hline
@@ -159,9 +164,24 @@ $5^{th}$ run & \color{blue}3  & \color{blue}4 &\color{blue} 8  & \color{blue}9  
   \frametitle{Selection sort: the Code (\texttt{codes/selection.c})}
   \lstinputlisting[firstnumber=38, firstline=38, lastline=51]{codes/selection.c}
 
-time complexity: $O(n^2)$
 \end{frame}
-
+%add new page -17p KSS-
+\begin{frame}[t]
+	\frametitle{Select sort: Time complexity}
+	\begin{center}
+		\begin{tabular}{c | p{3cm}}
+			loop & \scriptsize{number of comparison} \\ \hline
+			1    & n-1 \\
+			2    & n-2 \\
+			3    & n-3 \\
+			$\cdot$ &  $\cdot$ \\
+			$\cdot$ &  $\cdot$ \\
+			$\cdot$ &  $\cdot$ \\
+			n-1  &  1 \\
+		\end{tabular}
+	\end{center}
+	Time complexity: $O(n^2)$
+\end{frame}
 
 \section{Insertion sort}
 
@@ -177,14 +197,20 @@ for i from 1 to n-1
 
 \begin{frame}[t, fragile]
   \frametitle{Insertion sort}
-\begin{tabular}{c | c | c | c | c | c | p{6.5cm}}
-  idx   & 1  & 2  & 3  & 4  & 5  & ~ \\ \hline
-          & 36 & 28 & 30 & 17 & 23 & initial state\\ \hline
-  1       & \color{red}28 & \color{red}36 & 30 & 17 & 23 & {\footnotesize 28 is smaller than 36, move 28 to the sorted side } \pause \\  \hline
-  2       & \color{red}28 & \color{red}30 & \color{red}36 & 17 & 23 & {\footnotesize 30 is smaller than 36, move it to the sorted side} \pause \\  \hline
-  3       & \color{red}17 & \color{red}28 & \color{red}30 & \color{red}36 & 23 & {\footnotesize 17 is smaller than 36, 30, and 28, move it to the sorted side} \pause \\  \hline
-  4       & \color{red}17 & \color{red}23 & \color{red}28 & \color{red}30 & \color{red}36 & {\footnotesize 23 is smaller than 36, 30, and 28, move it to the sorted side} 
+  % restructure table -20p KSS-
+  \begin{table}
+  	\centering
+  	
+\begin{tabular}{c || c | c | c | c | c | p{4.5cm}}
+  index   & 1  & 2  & 3  & 4  & 5  & ~ \\ \hline
+  initial state& 36 & 28 & 30 & 17 & 23 & \\ \hline
+  $1^{st}$ run& \color{red}28 & \color{red}36 & 30 & 17 & 23 & {\footnotesize 28 is smaller than 36, move 28 to the sorted side} \pause \\  \hline
+  $2^{nd}$ run& \color{red}28 & \color{red}30 & \color{red}36 & 17 & 23 & {\footnotesize 30 is smaller than 36, move it to the sorted side} \pause \\  \hline
+  $3^{rd}$ run& \color{red}17 & \color{red}28 & \color{red}30 & \color{red}36 & 23 & {\footnotesize 17 is smaller than 36, 30, and 28, move it to the sorted side} \pause \\  \hline
+  $4^{th}$ run& \color{red}17 & \color{red}23 & \color{red}28 & \color{red}30 & \color{red}36 & {\footnotesize 23 is smaller than 36, 30, and 28, move it to the sorted side} 
 \end{tabular}
+
+\end{table}
 \end{frame}
 
 
@@ -214,7 +240,8 @@ Shell sort is based on insertion sort algorithm to reduce the number of shifts. 
 \begin{frame}[t, fragile]
   \frametitle{Shell sort: the Code (\texttt{codes/shell.c})}
   \lstinputlisting[firstnumber=43, firstline=43, lastline=51]{codes/shell.c}
-
+  %add time conplexity -25p KSS-
+time complexity: worst case $O(n^2)$, best case $O(n)$
 
 \end{frame}
 
@@ -454,7 +481,7 @@ T(n) & =  c \cdot n + 2 \cdot T(n/2) \\
      & O(n\cdot log_2n)
 \end{align*}
 
-Worst case: $O(n^2)$
+Time complexity: worst case $O(n^2)$, best case $O(n\log_{2}n)$
 \end{frame}
 
 

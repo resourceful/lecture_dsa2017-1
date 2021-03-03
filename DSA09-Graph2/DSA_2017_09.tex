@@ -438,7 +438,8 @@ A tree can be thought of as connected graph that has no cycles
 
 
 \begin{frame}[t]
-  \frametitle{Minimum Cost Spanning Tree}
+%add additional word -20p KSS-
+  \frametitle{Minimum Cost Spanning Tree : MST}
   \begin{itemize}
   \item Tree cost is sum of edge weights/costs
   \end{itemize}
@@ -518,8 +519,9 @@ A tree can be thought of as connected graph that has no cycles
 
 \begin{frame}[t]
   \frametitle{A Spanning Tree}
+  %add additional discription -22p KSS-
   \begin{itemize}
-  \item Spanning Tree cost is 41
+  \item Spanning Tree cost is 41 (= MST)
   \end{itemize}
 \begin{center}
     \begin{tikzpicture}
@@ -571,10 +573,12 @@ A tree can be thought of as connected graph that has no cycles
 
 \begin{frame}[t]
   \frametitle{Example}
+  %add question for MST -24p KSS-
   \begin{itemize}
   \item Network has 10 edges
   \item Spanning tree has only $n-1 =7 $ edges
   \item Need to either select 7 edges or discard 3
+  \item Which edges should be discarded to become MST ?
   \end{itemize}
 \begin{center}
     \begin{tikzpicture}
@@ -601,6 +605,68 @@ A tree can be thought of as connected graph that has no cycles
     \end{tikzpicture}
 \end{center}
 
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Example : Answer}
+	%add question for MST -25p KSS-
+	\begin{itemize}
+		\item Which edges should be discarded to become MST ?
+	\end{itemize}
+\begin{center}
+		\begin{tikzpicture}
+		\GraphInit[vstyle=Normal]\SetGraphUnit{1.9}
+		\Vertex{1}
+		\SO(1){2}
+		\EA(1){3}
+		\SOEA(1){4}
+		\EA(3){5}
+		\SOEA(3){6}
+		\EA(5){7}
+		\SOEA(5){8}
+		
+		\Edges[label=2](1, 2)
+		\Edges[label=X](1, 3)
+		\Edges[label=7](2, 3)
+		\Edges[label=X](2, 4)
+		\Edges[label=4](3, 4)
+		\Edges[label=10](3, 5)
+		\Edges[label=X](3, 6)
+		\Edges[label=6](5, 6)
+		\Edges[label=14](5, 7)
+		\Edges[label=3](7, 8)
+		\end{tikzpicture}
+	
+\end{center}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Example : Answer}
+	%add question for MST -26p KSS-
+	\begin{itemize}
+		\item Which edges should be discarded to become MST ?
+	\end{itemize}
+	\begin{center}
+		\begin{tikzpicture}
+		\GraphInit[vstyle=Normal]\SetGraphUnit{1.9}
+		\Vertex{1}
+		\SO(1){2}
+		\EA(1){3}
+		\SOEA(1){4}
+		\EA(3){5}
+		\SOEA(3){6}
+		\EA(5){7}
+		\SOEA(5){8}
+		
+		\Edges[label=2](1, 2)
+		\Edges[label=7](2, 3)
+		\Edges[label=4](3, 4)
+		\Edges[label=10](3, 5)
+		\Edges[label=6](5, 6)
+		\Edges[label=14](5, 7)
+		\Edges[label=3](7, 8)
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \subsection{Greedy Strategy}

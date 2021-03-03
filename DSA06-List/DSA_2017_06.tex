@@ -109,38 +109,64 @@ next element in a list
 
 \includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
 \end{frame}
+%add image, page composition revised -5p -
+\begin{frame}[t]
+	\frametitle{Singly Linked Lists: Insert}
+	To insert the word \texttt{mat} between \texttt{cat} and \texttt{sat}
+	\begin{itemize}
+		\item Goal
+	\end{itemize}
+	\includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
+	\begin{center}
+		$\big\Downarrow$
+	\end{center}
+	\includegraphics[width=0.9\textwidth]{figures/fig03_single_delete.png}
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Singly Linked Lists: Insert}
   To insert the word \texttt{mat} between \texttt{cat} and \texttt{sat}
+\includegraphics<1>[width=0.9\textwidth]{figures/fig02_single_insert.png}
 
-\includegraphics<2>[width=0.9\textwidth]{figures/fig02_single_insert.png}
+\includegraphics<2>[width=0.9\textwidth]{figures/fig02_single_insert1.png}
 
-\includegraphics<3>[width=0.9\textwidth]{figures/fig02_single_insert1.png}
+\includegraphics<3>[width=0.9\textwidth]{figures/fig02_single_insert2.png}
 
-\includegraphics<4>[width=0.9\textwidth]{figures/fig02_single_insert2.png}
-
-\includegraphics<5>[width=0.9\textwidth]{figures/fig02_single_insert3.png}
+\includegraphics<4>[width=0.9\textwidth]{figures/fig02_single_insert3.png}
 
 
 \begin{enumerate}
-\item<2-> get a node currently unused (\texttt{paddr})
-\item<3-> set the data of this node to mat
-\item<4-> set \texttt{paddr}'s link to point to the address found in the link of
+\item<1-> Get a node currently unused (\texttt{paddr})
+\item<2-> Set the data of this node to mat
+\item<3-> Set \texttt{paddr}'s link to point to the address found in the link of
   the node \texttt{cat}
-\item<5-> set the link of the node cat to point to \texttt{paddr}
+\item<4-> Set the link of the node cat to point to \texttt{paddr}
 
 \end{enumerate}
+\end{frame}
+
+%add image, page composition revised -7p KSS-
+\begin{frame}[t]
+	\frametitle{Singly Linked Lists: Delete}
+	To delete \texttt{mat} from the list
+	\begin{itemize}
+		\item Goal
+	\end{itemize}
+	\includegraphics[width=0.9\textwidth]{figures/fig03_single_delete.png}
+	\begin{itemize}
+		\item Result
+	\end{itemize}
+	\includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Singly Linked Lists: Delete}
 To delete \texttt{mat} from the list
-\includegraphics<1-2>[width=0.9\textwidth]{figures/fig03_single_delete.png}
+\includegraphics<1>[width=0.9\textwidth]{figures/fig03_single_delete.png}
 
-\includegraphics<3>[width=0.9\textwidth]{figures/fig03_single_delete1.png}
+\includegraphics<2>[width=0.9\textwidth]{figures/fig03_single_delete1.png}
 
-\includegraphics<4>[width=0.9\textwidth]{figures/fig03_single_delete2.png}
+\includegraphics<3>[width=0.9\textwidth]{figures/fig03_single_delete2.png}
 \begin{enumerate}
 \item<1-> Find the element that immediately precedes \texttt{mat}, which is cat
 \item<2-> Set its link to point to \texttt{mat}'s link
@@ -163,6 +189,11 @@ To delete \texttt{mat} from the list
     \end{center}
 
   \end{block}
+%add time complexity -9p KSS-
+Time Complexity
+\begin{itemize}
+	\item O(1)
+\end{itemize}
 \end{frame}
 
 \begin{frame}[t]
@@ -706,9 +737,9 @@ ptr->rlink->llink
 
 
 \end{frame}
-
+%frametitle revised -38,39p KSS-
 \begin{frame}[t]
-  \frametitle{Doubly Linked Lists}
+  \frametitle{Doubly Linked Circular Lists}
 Introduce dummy node, called, head
 \begin{itemize}
 \item To represent empty list
@@ -725,7 +756,7 @@ Introduce dummy node, called, head
 \end{frame}
 
 \begin{frame}[t]
-  \frametitle{Doubly Linked Lists}
+  \frametitle{Doubly Linked Circular Lists}
   \begin{figure}
   \begin{center}
     \includegraphics[width=0.8\textwidth]{figures/fig09_double_head1.png}
@@ -794,6 +825,120 @@ Deletion in a doubly linked circular list
   \item Insert(delete) front/middle/rear is all the same
   \end{itemize}
 \end{frame}
+
+%add HW -44p KSS-
+\begin{frame}[t]
+\frametitle{Homework : Music Player}
+Function
+\begin{itemize}
+	\item Play : Print current data
+	\item Next : Move next music
+	\item Back : Move back music
+	\item Add Music : Add new music
+	\item Delete Music : Delete current music
+	\item Circular : If use the Next function with last music, move first music
+\end{itemize}
+\begin{flushright}
+\textbf{Reference answer with cont'd skeleton code}
+\end{flushright}
+\end{frame}
+
+\begin{frame}[t, fragile, allowframebreaks]
+	\frametitle{Homework : Music Player}
+	\begin{lstlisting}
+	
+	typedef struct music 
+	{
+	char musicName[15]; 
+	struct music *backMusic;
+	struct music *frontMusic;
+	} Music;
+	
+	Music *headerPointer;
+	Music *currentMusic;
+	
+	int main(void)
+	{
+	int i;
+	
+	initMusic();
+	currentMusic = headerPointer;
+	char command[10];
+	
+	//Code is required.
+	
+	allFree();
+	return 0;
+	}
+	
+	void initMusic()
+	{
+	headerPointer = (Music *)malloc(sizeof(Music));
+	headerPointer -> backMusic = headerPointer;
+	headerPointer -> frontMusic = headerPointer;
+	}
+	
+	void playMusic()
+	{
+	//Code is required.
+	}
+	
+	void Next()
+	{
+	//Code is required.
+	}
+	
+	
+	void Back()
+	{
+	//Code is required.
+	}
+	
+	
+	void addMusic()
+	{
+	char newdata[15];
+	scanf("%s", newdata);
+	Music *newMusic;
+	newMusic = (Music *)malloc(sizeof(Music));
+	
+	//Code is required.
+	}
+	
+	
+	void deleteMusic()
+	{
+	if(headerPointer -> frontMusic == headerPointer)
+	{
+	printf("There is no music here\n");
+	}
+	else
+	{
+	Music *deletePointer;
+	deletePointer = currentMusic;
+	
+	//Code is required.
+	
+	free(deletePointer);
+	}
+	}
+	
+	void allFree()
+	{
+	Music *iter = headerPointer;
+	Music *iterNext = NULL;
+	do {
+	iterNext = iter -> frontMusic;
+	free(iter);
+	iter = iterNext;
+	} while(iter != headerPointer);
+	
+	printf("____________________\n\n");
+	}
+	\end{lstlisting}
+\end{frame}
+
+\end{document}
 
 
 \end{document}
