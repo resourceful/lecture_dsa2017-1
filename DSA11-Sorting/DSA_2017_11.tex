@@ -78,8 +78,8 @@ repeat until no swaps
 
 \begin{frame}[t]
   \frametitle{Bubble sort: example}
-  \begin{tabular}{p{1.5cm}| c | c | c | c | c | c | c |p{4cm}}
-
+  \begin{tabular}{p{1.5cm}|| c | c | c | c | c | c | c |p{4cm}}
+%11, 12 line revised -7p KSS-
 initial & 15 & 4  & 8  & 3  & 50 & 9 & 20 & unsorted array \\ \hline
 $1^{st}$ run & \color{red} 4  & \color{red}15 & 8  & 3  & 50 & 9 & 20 & cmp 1 and 2, swap \pause\\  \hline
 $1^{st}$ run & 4  & \color{red}8  & \color{red}15 & 3  & 50 & 9 & 20 & cmp 2 and 3, swap \pause \\ \hline
@@ -192,7 +192,7 @@ for i from 1 to n-1
   \frametitle{Insertion sort: the Code (\texttt{codes/insertion.c})}
   \lstinputlisting[firstnumber=29, firstline=29, lastline=41]{codes/insertion.c}
 
-time complexity: worst case $O(n^2)$, best case $O(n)$
+Time complexity: worst case $O(n^2)$, best case $O(n)$
 \end{frame}
 
 
@@ -231,7 +231,7 @@ Divide and Conquer
 \item split and control
 \end{itemize}
 
-using recursion
+Using recursion
 \begin{itemize}
 \item stack is needed
 \end{itemize}
@@ -287,9 +287,9 @@ Initial list \printarray[2em]{31, 11, 41, 12, 51, 90, 20, 64, 53, 55, 32}
 \]
 \begin{itemize}
 \item examine the first, and last item of the full list that is 31 (first, pivot), and 32 (last)
-\item search forward until we find an item larger than the pivot $41 > 31$
-\item search backward until we find an item smaller than the pivot $20 < 31$
-\item swap the two items
+\item Search forward until we find an item larger than the pivot $41 > 31$
+\item Search backward until we find an item smaller than the pivot $20 < 31$
+\item Swap the two items
 \end{itemize}
 
 \[
@@ -304,8 +304,8 @@ Initial list \printarray[2em]{31, 11, 41, 12, 51, 90, 20, 64, 53, 55, 32}
 \underbracket[0.5pt]{{\thickspace}\printarray[2em]{\color{red}31, 11, \color{blue}20, 12, 51, 90, \color{blue}41, 64, 53, 55, 32}{\thickspace}}_{pivot=31}
 \]
 \begin{itemize}
-\item repeat the process until the left and right indices cross each other
-\item then swap the item with the pivot
+\item Repeat the process until the left and right indices cross each other
+\item Then swap the item with the pivot
 \end{itemize}
 \[
 \underbracket[0.5pt]{{\thickspace}\printarray[2em]{12, 11, \color{blue}20, \color{red}31, 51, 90, \color{blue}41, 64, 53, 55, 32}{\thickspace}}_{pivot=31}
@@ -322,7 +322,7 @@ Initial list \printarray[2em]{31, 11, 41, 12, 51, 90, 20, 64, 53, 55, 32}
 \] 
 
 \begin{itemize}
-\item repeat the quick sort for the left and right part
+\item Repeat the quick sort for the left and right part
 \end{itemize}
 
 \[
@@ -441,7 +441,7 @@ Initial list \printarray[2em]{31, 11, 41, 12, 51, 90, 20, 64, 53, 55, 32}
 
 \begin{frame}[t]
   \frametitle{Quick Sort: time complexity}
-Average case: $O(n \cdot log_2n)$, when elements can be split into ``equal size''
+Average case: $O(n \cdot \log_{2}n)$, when elements can be split into ``equal size''
 
 Let $T(n)$ be average time to sort $n$ records
 
@@ -450,7 +450,7 @@ T(n) & =  c \cdot n + 2 \cdot T(n/2) \\
      &\leq c \cdot n + 2 \cdot (c \cdot n/2 + 2 \cdot T(n/4)) \\
      &\leq 2 \cdot c \cdot n + 4 \cdot T(n/4)) \\
      & \cdots \\
-     &\leq c \cdot n \cdot log_2n + n \cdot T(1)) \\
+     &\leq c \cdot n \cdot \log_{2}n + n \cdot T(1)) \\
      & O(n\cdot log_2n)
 \end{align*}
 
@@ -476,10 +476,10 @@ Utilize the min heap structure
 \item<implement min heap with array> 
 \end{itemize}
 
-time complexity
+Time complexity
 \begin{itemize}
-\item average case: $O(n \cdot log_2n)$
-\item average case: $O(n \cdot log_2n)$
+\item Average case: $O(n \cdot log_2n)$
+\item Average case: $O(n \cdot log_2n)$
 \end{itemize}
 
 First insert the items to the binary tree and delete the min values from the min heap and put it in the sorted array.
@@ -489,7 +489,7 @@ First insert the items to the binary tree and delete the min values from the min
   \frametitle{Heap Sort}
 Heap sorting process
 \begin{itemize}
-\item input list: $(26, 5, 77, 1, 61, 11, 59, 15, 48, 19)$
+\item Input list: $(26, 5, 77, 1, 61, 11, 59, 15, 48, 19)$
 \end{itemize}
 \begin{columns}
   \column{0.7\textwidth}
@@ -556,10 +556,10 @@ Initial max heap construction
     \lstinputlisting[firstnumber=28, firstline=28, lastline=64, basicstyle=\footnotesize]{codes/heapsort.c}
 \end{frame}
 
-
+%typo revivsed -44p KSS-
 \begin{frame}[t]
   \frametitle{Heap Sort}
-Worst case time complexity:
+Time complexity:
 
 $log_2n + log_2(n-1) + \cdots + log_22$
 $=O(n\cdot log_2n)$
@@ -571,11 +571,11 @@ $=O(n\cdot log_2n)$
   \frametitle{Radix Sort}
   \begin{itemize}
   \item It is a kind of distributive sort
-  \item repeats the following 3 steps
+  \item Repeats the following 3 steps
     \begin{enumerate}
-    \item comparison
-    \item distribution
-    \item merging
+    \item Comparison
+    \item Distribution
+    \item Merging
     \end{enumerate}
 
   \end{itemize}
