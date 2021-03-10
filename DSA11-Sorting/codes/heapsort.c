@@ -24,7 +24,6 @@ int main()
 
 	return 0;
 }
-
 // heapify a subtree rooted with node i 
 // i: an index in list[];  n: is size of heap
 void heapify(int list[], int n, int i)

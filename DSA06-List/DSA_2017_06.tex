@@ -1,8 +1,8 @@
 % Author: Seongjin Lee 
 % Gyeongsang National University, Korea 
 % 
-% 2017-03-06
-%
+% 2021-02-20
+%F
 
 \documentclass[newPxFont,sthlmFooter,nooffset]{beamer}
 \usepackage{kotex}
@@ -25,7 +25,7 @@
 \subtitle{Class 6}
 \author[SJL]{Seongjin Lee}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2017-03-06} 
+\date{2021-02-20} 
 
 \begin{document}
 
@@ -99,52 +99,78 @@ free(pf);
 \begin{frame}[t]
   \frametitle{Singly Linked Lists}
   \begin{itemize}
-  \item compose of data part and link part
-  \item link part contains address of the
+  \item Compose of data part and link part
+  \item Link part contains address of the
 next element in a list
-  \item non-sequential representations
-  \item size of the list is not predefined
-  \item dynamic storage allocation and deallocation
+  \item Non-sequential representations
+  \item Size of the list is not predefined
+  \item Dynamic storage allocation and deallocation
   \end{itemize}
 
 \includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
+\end{frame}
+%add image, page composition revised -5p -
+\begin{frame}[t]
+	\frametitle{Singly Linked Lists: Insert}
+	To insert the word \texttt{mat} between \texttt{cat} and \texttt{sat}
+	\begin{itemize}
+		\item Goal
+	\end{itemize}
+	\includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
+	\begin{center}
+		$\big\Downarrow$
+	\end{center}
+	\includegraphics[width=0.9\textwidth]{figures/fig03_single_delete.png}
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Singly Linked Lists: Insert}
   To insert the word \texttt{mat} between \texttt{cat} and \texttt{sat}
+\includegraphics<1>[width=0.9\textwidth]{figures/fig02_single_insert.png}
 
-\includegraphics<2>[width=0.9\textwidth]{figures/fig02_single_insert.png}
+\includegraphics<2>[width=0.9\textwidth]{figures/fig02_single_insert1.png}
 
-\includegraphics<3>[width=0.9\textwidth]{figures/fig02_single_insert1.png}
+\includegraphics<3>[width=0.9\textwidth]{figures/fig02_single_insert2.png}
 
-\includegraphics<4>[width=0.9\textwidth]{figures/fig02_single_insert2.png}
-
-\includegraphics<5>[width=0.9\textwidth]{figures/fig02_single_insert3.png}
+\includegraphics<4>[width=0.9\textwidth]{figures/fig02_single_insert3.png}
 
 
 \begin{enumerate}
-\item<2-> get a node currently unused (\texttt{paddr})
-\item<3-> set the data of this node to mat
-\item<4-> set \texttt{paddr}'s link to point to the address found in the link of
+\item<1-> Get a node currently unused (\texttt{paddr})
+\item<2-> Set the data of this node to mat
+\item<3-> Set \texttt{paddr}'s link to point to the address found in the link of
   the node \texttt{cat}
-\item<5-> set the link of the node cat to point to \texttt{paddr}
+\item<4-> Set the link of the node cat to point to \texttt{paddr}
 
 \end{enumerate}
+\end{frame}
+
+%add image, page composition revised -7p KSS-
+\begin{frame}[t]
+	\frametitle{Singly Linked Lists: Delete}
+	To delete \texttt{mat} from the list
+	\begin{itemize}
+		\item Goal
+	\end{itemize}
+	\includegraphics[width=0.9\textwidth]{figures/fig03_single_delete.png}
+	\begin{itemize}
+		\item Result
+	\end{itemize}
+	\includegraphics[width=0.9\textwidth]{figures/fig01_single.png}
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Singly Linked Lists: Delete}
 To delete \texttt{mat} from the list
-\includegraphics<1-2>[width=0.9\textwidth]{figures/fig03_single_delete.png}
+\includegraphics<1>[width=0.9\textwidth]{figures/fig03_single_delete.png}
 
-\includegraphics<3>[width=0.9\textwidth]{figures/fig03_single_delete1.png}
+\includegraphics<2>[width=0.9\textwidth]{figures/fig03_single_delete1.png}
 
-\includegraphics<4>[width=0.9\textwidth]{figures/fig03_single_delete2.png}
+\includegraphics<3>[width=0.9\textwidth]{figures/fig03_single_delete2.png}
 \begin{enumerate}
-\item<2-> find the element that immediately precedes \texttt{mat}, which is cat
-\item<3-> set its link to point to \texttt{mat}'s link
-\item<4-> free the \texttt{mat}'s node
+\item<1-> Find the element that immediately precedes \texttt{mat}, which is cat
+\item<2-> Set its link to point to \texttt{mat}'s link
+\item<3-> Free the \texttt{mat}'s node
 \end{enumerate}
 \end{frame}
 
@@ -158,21 +184,28 @@ To delete \texttt{mat} from the list
 
       There is no data movement in insert and delete operation
 
+
 \bigskip
     \end{center}
 
   \end{block}
+%add time complexity -9p KSS-
+Time Complexity
+\begin{itemize}
+	\item O(1)
+\end{itemize}
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Singly Linked List: Features}
   
-required capabilities to make linked representations possible
+Required capabilities to make linked representations possible
+begin{itemize}
 \begin{itemize}
-\item a mechanism for defining a node’s structure, that is, the
+\item A mechanism for defining a node’s structure, that is, the
   field it contains
-\item a way to create new nodes when we need them
-\item a way to remove nodes that we no longer need
+\item A way to create new nodes when we need them
+\item A way to remove nodes that we no longer need
 \end{itemize}
 
 \end{frame}
@@ -243,12 +276,12 @@ head->next=second;
 \begin{frame}[t, fragile]
   \frametitle{Singly Linked List: Implementation}
   \begin{itemize}
-  \item data structure
-  \item insert a node
-  \item delete the list
-  \item remove a node
-  \item search
-  \item print
+  \item Data structure
+  \item Insert a node
+  \item Delete the list
+  \item Remove a node
+  \item Search
+  \item Print
   \end{itemize}
 
   \begin{ncodedef}
@@ -276,7 +309,7 @@ void print_list(node_t * head) {
 \bigskip
   \begin{itemize}
   \item Create a pointer that iterates the list
-  \item print the data in the list.
+  \item Print the data in the list.
   \item Repeat until the pointer reaches the end of the list
     (the next node in \texttt{NULL})
   \end{itemize}
@@ -302,9 +335,9 @@ void insert_tail(node_t * head, int data) {
 \bigskip
   \begin{itemize}
   \item Iterate the list using a pointer to find the end of the list
-  \item add a new node at the end of the list
-  \item add the data
-  \item mark next node as \texttt{NULL}
+  \item Add a new node at the end of the list
+  \item Add the data
+  \item Mark next node as \texttt{NULL}
   \end{itemize}
 
 \end{frame}
@@ -324,9 +357,9 @@ void insert_head(node_t ** head, int data) {
 \end{ncodedef}
 \bigskip
 \begin{itemize}
-\item create a new node with data
-\item link the new node to point to the head of the list
-\item set the head of the list with the new node
+\item Create a new node with data
+\item Link the new node to point to the head of the list
+\item Set the head of the list with the new node
 \end{itemize}
 
 \end{frame}
@@ -362,10 +395,10 @@ int remove_head(node_t ** head) {
 }  
 \end{ncodedef}
 \begin{itemize}
-\item select the next item that head points
-\item save it as a new head
-\item free the head
-\item use the new head as the head of the list
+\item Select the next item that head points
+\item Save it as a new head
+\item Free the head
+\item Use the new head as the head of the list
 \end{itemize}
 \end{frame}
 
@@ -487,14 +520,14 @@ stack_ptr top[MAX_STACKS];
         \begin{itemize}
         \item \texttt{top[i] = NULL, \\0 $\leq$ i $\leq$ MAX\_STACKS}
         \end{itemize}
-      \item boundary condition for \texttt{n} stacks
+      \item Boundary condition for \texttt{n} stacks
         \begin{itemize}
-        \item empty condition
+        \item Empty condition
           \begin{itemize}
           \item \texttt{top[i] = NULL} \\iff the $i^{th}$ stack is empty
           \end{itemize}
 
-        \item full condition
+        \item Full condition
           \begin{itemize}
           \item \texttt{IS\_FULL(temp)} \\iff the memory is full
           \end{itemize}
@@ -564,13 +597,13 @@ queue_ptr front[MAX_QUEUES],
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-      \item initial condition for queue
+      \item Initial condition for queue
         \begin{itemize}
         \item \texttt{front[i] = NULL, \\0 $\leq$ i $\leq$ MAX\_QUEUES}
         \end{itemize}
-      \item boundary condition for queues
+      \item Boundary condition for queues
         \begin{itemize}
-        \item empty condition
+        \item Empty condition
           \begin{itemize}
           \item \texttt{front[i] = NULL} \\iff the $i^{th}$ queue is empty
           \end{itemize}
@@ -640,9 +673,9 @@ element delete(queue_ptr *pfront) {
   \frametitle{Representing Stack and Queues by Linked List}
 Advantages are
 \begin{itemize}
-\item no data movement is necessary: O(1) operation
-\item no full condition check is necessary
-\item size is growing and shrinking dynamically
+\item No data movement is necessary: O(1) operation
+\item No full condition check is necessary
+\item Size is growing and shrinking dynamically
 \end{itemize}
 
 
@@ -654,18 +687,18 @@ Advantages are
   \frametitle{Doubly Linked Lists}
 Problems of singly linked lists
 \begin{itemize}
-\item  move to only one way direction
-\item hard to find the previous node
-\item hard to delete the arbitrary node
+\item Move to only one way direction
+\item Hard to find the previous node
+\item Hard to delete the arbitrary node
 \end{itemize}
 
 
 \bigskip
-doubly linked circular list
+Doubly linked circular list
 \begin{itemize}
-\item doubly lists + circular lists
-\item allow two links
-\item two way direction
+\item Doubly lists + circular lists
+\item Allow two links
+\item Two way direction
 \end{itemize}
 
 
@@ -692,7 +725,7 @@ typedef struct node {
 
 \begin{frame}[t, fragile]
   \frametitle{Doubly Linked Lists}
-suppose that \texttt{ptr} points to any node in a doubly linked list
+Suppose that \texttt{ptr} points to any node in a doubly linked list
 
 \begin{ncodedef}
 ptr 
@@ -704,14 +737,14 @@ ptr->rlink->llink
 
 
 \end{frame}
-
+%frametitle revised -38,39p KSS-
 \begin{frame}[t]
-  \frametitle{Doubly Linked Lists}
-introduce dummy node, called, head
+  \frametitle{Doubly Linked Circular Lists}
+Introduce dummy node, called, head
 \begin{itemize}
-\item to represent empty list
-\item make easy to implement operations 
-\item contains no information in item field
+\item To represent empty list
+\item Make easy to implement operations 
+\item Contains no information in item field
 \end{itemize}
 \bigskip
 \begin{figure}
@@ -723,7 +756,7 @@ introduce dummy node, called, head
 \end{frame}
 
 \begin{frame}[t]
-  \frametitle{Doubly Linked Lists}
+  \frametitle{Doubly Linked Circular Lists}
   \begin{figure}
   \begin{center}
     \includegraphics[width=0.8\textwidth]{figures/fig09_double_head1.png}
@@ -745,7 +778,7 @@ void d_insert(node_ptr node, node_ptr newnode) {
 }    
   \end{ncodedef}
 
-time complexity O(1)
+Time complexity O(1)
 \end{frame}
 
 \begin{frame}[t]
@@ -788,10 +821,124 @@ Deletion in a doubly linked circular list
 \begin{frame}[t]
   \frametitle{Notes on doubly linked circular list}
   \begin{itemize}
-  \item don't have to traverse a list - time complexity of O(1)
-  \item insert(delete) front/middle/rear is all the same
+  \item Don't have to traverse a list - time complexity of O(1)
+  \item Insert(delete) front/middle/rear is all the same
   \end{itemize}
 \end{frame}
+
+%add HW -44p KSS-
+\begin{frame}[t]
+\frametitle{Homework : Music Player}
+Function
+\begin{itemize}
+	\item Play : Print current data
+	\item Next : Move next music
+	\item Back : Move back music
+	\item Add Music : Add new music
+	\item Delete Music : Delete current music
+	\item Circular : If use the Next function with last music, move first music
+\end{itemize}
+\begin{flushright}
+\textbf{Reference answer with cont'd skeleton code}
+\end{flushright}
+\end{frame}
+
+\begin{frame}[t, fragile, allowframebreaks]
+	\frametitle{Homework : Music Player}
+	\begin{lstlisting}
+	
+	typedef struct music 
+	{
+	char musicName[15]; 
+	struct music *backMusic;
+	struct music *frontMusic;
+	} Music;
+	
+	Music *headerPointer;
+	Music *currentMusic;
+	
+	int main(void)
+	{
+	int i;
+	
+	initMusic();
+	currentMusic = headerPointer;
+	char command[10];
+	
+	//Code is required.
+	
+	allFree();
+	return 0;
+	}
+	
+	void initMusic()
+	{
+	headerPointer = (Music *)malloc(sizeof(Music));
+	headerPointer -> backMusic = headerPointer;
+	headerPointer -> frontMusic = headerPointer;
+	}
+	
+	void playMusic()
+	{
+	//Code is required.
+	}
+	
+	void Next()
+	{
+	//Code is required.
+	}
+	
+	
+	void Back()
+	{
+	//Code is required.
+	}
+	
+	
+	void addMusic()
+	{
+	char newdata[15];
+	scanf("%s", newdata);
+	Music *newMusic;
+	newMusic = (Music *)malloc(sizeof(Music));
+	
+	//Code is required.
+	}
+	
+	
+	void deleteMusic()
+	{
+	if(headerPointer -> frontMusic == headerPointer)
+	{
+	printf("There is no music here\n");
+	}
+	else
+	{
+	Music *deletePointer;
+	deletePointer = currentMusic;
+	
+	//Code is required.
+	
+	free(deletePointer);
+	}
+	}
+	
+	void allFree()
+	{
+	Music *iter = headerPointer;
+	Music *iterNext = NULL;
+	do {
+	iterNext = iter -> frontMusic;
+	free(iter);
+	iter = iterNext;
+	} while(iter != headerPointer);
+	
+	printf("____________________\n\n");
+	}
+	\end{lstlisting}
+\end{frame}
+
+\end{document}
 
 
 \end{document}
