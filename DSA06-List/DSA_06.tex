@@ -25,7 +25,7 @@
 \subtitle{Class 6}
 \author[SJL]{Seongjin Lee}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2021-02-20} 
+\date{} 
 
 \begin{document}
 
@@ -495,36 +495,46 @@ void delete_list(node_t *head) {
   \frametitle{Representing stacks by linked list}
   \begin{columns}
     \begin{column}{0.5\textwidth}
+      \vspace{-1em} 
   \begin{ncodedef}
-/* n=MAX_STACKS=10 */ 
-#define MAX_STACKS 10
+typedef struct _stack_node {
+  int data;
+  struct _stack_node *next;
+} stacknode;
 
-typedef struct {
-    int key; 
-    /* other fields */ 
-} element;
+typedef struct _stack_list {
+  stacknode *top;
+} lstack;
 
-typedef struct stack *stack_ptr; 
+void INIT(lstack *s) {
+  s->top = NULL;
+}
 
-typedef struct stack {
-    element item;
-    stack_ptr link; 
-};
+int IS_FULL(lstack *s) {
+  return 0;
+}
 
-stack_ptr top[MAX_STACKS];    
-  \end{ncodedef}      
+int IS_EMPTY(lstack *s) {
+  return (s->top == NULL);
+}
+
+void TOP(lstack *s) {
+  if (!IS_EMPTY(s))
+   printf("%d\n", s->top->data);
+}
+\end{ncodedef}      
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-      \item Initial condition for stacks
+      \item Initial condition for stacks (No limits at the moment)
         \begin{itemize}
-        \item \texttt{top[i] = NULL, \\0 $\leq$ i $\leq$ MAX\_STACKS}
+        \item \texttt{top = NULL, \\0 $\leq$ i $\leq$ MAX\_STACKS}
         \end{itemize}
       \item Boundary condition for \texttt{n} stacks
         \begin{itemize}
         \item Empty condition
           \begin{itemize}
-          \item \texttt{top[i] = NULL} \\iff the $i^{th}$ stack is empty
+          \item \texttt{top = NULL} \\iff the $i^{th}$ stack is empty
           \end{itemize}
 
         \item Full condition
@@ -544,16 +554,17 @@ stack_ptr top[MAX_STACKS];
 \begin{frame}[t, fragile]
   \frametitle{Pushing to a linked list stack}
   \begin{ncodedef}
-void push(stack_ptr *ptop, element item) { 
-    stack_ptr temp = (stack_ptr)malloc(sizeof (stack)); 
-    if(IS_FULL(temp)) {
-        fprintf(stderr,``The memory is full\n'');
-        exit(1); 
+void PUSH(lstack *s, int data) {
+    // IS_FULL(s) testing required
+    stacknode *t = (stacknode*)malloc(sizeof(stacknode));
+    if (t == NULL) {
+        printf("Failed to allocate\n");
+        return ;
     }
-    temp->item=item; 
-    temp->link=*ptop; 
-    *ptop = temp;
-}    
+    t->data = data;
+    t->next = s->top;
+    s->top = t;
+}  
   \end{ncodedef}
 \end{frame}
 
@@ -561,17 +572,19 @@ void push(stack_ptr *ptop, element item) {
 \begin{frame}[t, fragile]
   \frametitle{Poping a linked list stack}
   \begin{ncodedef}
-element pop(stack_ptr *ptop) { 
-    stack_ptr temp = *ptop; 
-    element item; 
-    if(IS_EMPTY(temp)) {
-        fprintf(stderr,``The stack is empty\n'');
-        exit(1); 
-     }
-     item=temp->item; 
-     *ptop=temp->link; 
-     free(temp); 
-     return item;
+int POP(lstack *s) {
+  int data;
+  if(IS_EMPTY(s)) {
+    printf("Stack Empty\n");
+    return -1;
+  }
+  else {
+    stacknode *t = s->top;
+    data = t->data;
+    s->top = s->top->next;
+    free(t);
+    return data;
+  }
 }    
   \end{ncodedef}
 \end{frame}
@@ -581,31 +594,32 @@ element pop(stack_ptr *ptop) {
   \begin{columns}
     \begin{column}{0.5\textwidth}
   \begin{ncodedef}
-/* m=MAX_QUEUES=10 */ 
-#define MAX_QUEUES 10 
+struct _node {
+  int data;
+  struct _node *next;
+} ;
 
-typedef struct queue *queue_ptr;
+typedef struct _node listnode;
 
-typedef struct queue {
-    element item;
-    queue_ptr link; 
-};
+struct _queue {
+  listnode *front;
+  listnode *rear;
+} ;
 
-queue_ptr front[MAX_QUEUES], 
-          rear[MAX_QUEUES];    
+typedef struct _queue queue;   
   \end{ncodedef}      
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
       \item Initial condition for queue
         \begin{itemize}
-        \item \texttt{front[i] = NULL, \\0 $\leq$ i $\leq$ MAX\_QUEUES}
+        \item \texttt{front = NULL, \\0 $\leq$ i $\leq$ MAX\_QUEUES}
         \end{itemize}
       \item Boundary condition for queues
         \begin{itemize}
         \item Empty condition
           \begin{itemize}
-          \item \texttt{front[i] = NULL} \\iff the $i^{th}$ queue is empty
+          \item \texttt{front = NULL} \\iff the $i^{th}$ queue is empty
           \end{itemize}
 
         \item full condition
@@ -625,25 +639,23 @@ queue_ptr front[MAX_QUEUES],
 \begin{frame}[t, fragile]
   \frametitle{Add to the rear of a linked list queue}
   \begin{ncodedef}
-void insert(queue_ptr *pfront, 
-            queue_ptr *prear, 
-            element item) {
-    queue_ptr temp = (queue_ptr)malloc(sizeof(queue));
-
-    if(IS_FULL(temp)) {
-        fprintf(stderr, ``The memory is full\n''); 
-        exit(1);
-    } 
-
-    temp->item=item; 
-    temp->link=NULL; 
-    
-    if (*pfront) 
-        (*prear)->link=temp; 
-    else
-        *pfront = temp; 
-
-    *prear = temp;
+void enqueue(queue *q, int data)
+{
+  listnode *newnode;
+  newnode = malloc(sizeof(listnode));
+  if(!newnode)
+  {
+    printf("failed to create node\n");
+    exit(-1);
+  }
+  newnode->data = data;
+  newnode->next = NULL;
+  if(q->rear)
+    q->rear->next = newnode;
+  q->rear = newnode;
+  if(q->front == NULL)
+    q->front = q->rear;
+  printf("enqueue %d\n", q->rear->data);
 }    
   \end{ncodedef}
 \end{frame}
@@ -651,21 +663,25 @@ void insert(queue_ptr *pfront,
 \begin{frame}[t, fragile]
   \frametitle{Delete from the front of a linked list queue}
   \begin{ncodedef}
-element delete(queue_ptr *pfront) { 
-    queue_ptr temp=*pfront;
-    element item;
-
-    if (IS_EMPTY(*pfront)) {
-        fprintf(stderr,``The queue is empty\n'');
-        exit(1); 
-    }
-
-    item=temp->item; 
-    *pfront=temp->link; 
+int dequeue(queue *q)
+{   
+  int data = 0;
+  listnode *temp;
+  if(IsEmptyQueue(q))
+  {
+    printf("queue is empty\n");
+    return 0;
+  }
+  else
+  {
+    temp = q->front;
+    data = q->front->data;
+    q->front = q->front->next;
     free(temp);
-
-    return item;
-}    
+  }
+  printf("dequeue %d\n", data);
+  return data;
+}        
   \end{ncodedef}
 \end{frame}
 
