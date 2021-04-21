@@ -23,9 +23,9 @@
 
 \title{Data Structure and Algorithm}
 \subtitle{Class 5}
-\author[SJL]{Seongjin Lee}
+\author[SJL]{Seongjin Lee\\{\scriptsize Revised by Songsub Kim}}
 \institute{\href{mailto:insight@gnu.ac.kr}{insight@gnu.ac.kr}\\\url{http://resourceful.github.io}\\Systems Research Lab.\\GNU}
-\date{2021-02-14} 
+\date{} 
 
 \begin{document}
 
@@ -233,6 +233,13 @@ element pop(int *ptop){
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}[t,allowframebreaks,fragile]
+  \frametitle{Stack implementation: Dynamic sized}
+
+  \lstinputlisting{codes/stack.c}
+
+\end{frame}
 
 
 
@@ -491,6 +498,21 @@ No data movement necessary
 \end{itemize}
 
 \end{frame}
+
+\begin{frame}[t,allowframebreaks,fragile]
+  \frametitle{Queue implementation: Dynamic sized list}
+
+  \lstinputlisting{codes/queue_list.c}
+
+\end{frame}
+
+\begin{frame}[t,allowframebreaks,fragile]
+  \frametitle{Queue implementation: circular}
+
+  \lstinputlisting{codes/circular_queue.c}
+
+\end{frame}
+
 
 \section{A Mazing Problem}
 \begin{frame}[t]
@@ -786,64 +808,10 @@ represent stack by a global array
 
 \begin{frame}[t, fragile, allowframebreaks]
    \frametitle{Function to evaluate a postfix expression}
-\begin{ncodedef}
-int eval(){
-    precedence token;
-    char symbol;
-
-    int op1, op2;
-
-    int n = 0;
-    int top = -1;
-  
-    token = get_token(&symbol, &n); 
-  
-    while (token != eos) {
-        if (token == operand)
-            push(&top, symbol-’0’); 
-        else {
-            op2 = pop(&top); 
-            op1 = pop(&top); 
-  
-            switch (token) {
-                case plus: push(&top, op1+op2); 
-                           break; 
-                case minus: push(&top, op1-op2);
-                           break; 
-                case times: push(&top, op1*op2);
-                           break; 
-                case divide: push(&top, op1/op2);
-                           break; 
-                case mod: push(&top, op1%op2);
-            } 
-         }
-         token = get_token(&symbol, &n); 
-     }
-     return pop(&top); 
-}  
-\end{ncodedef}
-
+  \lstinputlisting{codes/expression.c}
 \end{frame}
 
-\begin{frame}[t, fragile, allowframebreaks]
-  \frametitle{Function to get a token}
-  \begin{ncodedef}
-precedence get_token(char *psymbol, int *pn) {
-    *psymbol = expr[(*pn)++]; 
-    switch (*psymbol)
-        case ‘(‘ : return lparen;
-        case ‘)‘ : return rparen;
-        case ‘+‘ : return plus;
-        case ‘-‘ : return minus;
-        case ‘*‘ : return times;
-        case ‘/‘ : return divide;
-        case ‘%‘ : return mod;
-        case ‘ ‘ : return eos;
-        default : return operand; /* no error checking */
-    } 
-}    
-  \end{ncodedef}
-\end{frame}
+
 
 \begin{frame}[t]
   \frametitle{Complexity}
