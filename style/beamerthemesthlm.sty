@@ -343,7 +343,7 @@ aboveskip=1em
     {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor \par}%
     \vspace*{5mm}
     \fi%
-    \ifx\insertdate\@empty%
+    \ifx\insertdate\@empty \small{\jobname}\par%
     \else%
     {\usebeamerfont{date}\usebeamercolor[fg]{date}Updated: \insertdate\par\small{\jobname}\par}%
     \fi%
